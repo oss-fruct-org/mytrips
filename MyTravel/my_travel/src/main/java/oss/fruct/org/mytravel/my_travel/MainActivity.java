@@ -17,8 +17,7 @@ import other.SideMenuListener;
 
 public class MainActivity extends FragmentActivity implements SideMenuListener {
 
-    private String[] names = { "Иван", "Марья", "Петр", "Антон", "Даша", "Борис",  "Костя", "Игорь",
-            "Анна", "Денис", "Андрей", "Иван", "Марья", "Петр", "Антон", "Даша" };
+    private String[] menu_names = { "Войти", "Показать точки рядом", "Мои маршруты", "Мои точки", "Мои оффлайн карты", "О карте" };
 
     private FragmentTransaction fragmentTransaction;
     private View content;
@@ -53,7 +52,7 @@ public class MainActivity extends FragmentActivity implements SideMenuListener {
 
         ListView menu = (ListView) findViewById(R.id.menu);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, names);
+                android.R.layout.simple_list_item_1, menu_names);
         menu.setAdapter(adapter);
     }
 
