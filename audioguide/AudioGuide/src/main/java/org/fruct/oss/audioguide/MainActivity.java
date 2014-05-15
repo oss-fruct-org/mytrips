@@ -187,17 +187,23 @@ public class MainActivity extends ActionBarActivity
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = TrackFragment.newInstance();
-			initPanels(-1);
+            fragment = GetsFragment.newInstance();
+            initPanels(-1);
 			break;
 		case 1:
 			fragment = MapFragment.newInstance();
 			initPanels(1);
 			break;
 		case 2:
-			fragment = GetsFragment.newInstance();
-			initPanels(-1);
+            fragment = TrackFragment.newInstance();
+            initPanels(-1);
 			break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
 		}
 
 		if (fragmentParameters != null && fragment != null) {

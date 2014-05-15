@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/AudioGuide" />
+            <option value="C:\Users\vabsoluter\Documents\mytrips\mytrips\audioguide" />
+            <option value="C:\Users\vabsoluter\Documents\mytrips\mytrips\audioguide\AudioGuide" />
           </set>
         </option>
       </GradleProjectSettings>

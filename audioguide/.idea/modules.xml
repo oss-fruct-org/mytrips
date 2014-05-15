@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AudioGuide.iml" filepath="$PROJECT_DIR$/AudioGuide.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AudioGuide/AudioGuide-AudioGuide.iml" filepath="$PROJECT_DIR$/AudioGuide/AudioGuide-AudioGuide.iml" />
     </modules>
   </component>
 </project>
