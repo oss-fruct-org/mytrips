@@ -187,17 +187,23 @@ public class MainActivity extends ActionBarActivity
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = TrackFragment.newInstance();
-			initPanels(-1);
+            fragment = GetsFragment.newInstance();
+            initPanels(-1);
 			break;
 		case 1:
 			fragment = MapFragment.newInstance();
 			initPanels(1);
 			break;
-		case 2:
-			fragment = GetsFragment.newInstance();
-			initPanels(-1);
+		case 3:
+            fragment = TrackFragment.newInstance();
+            initPanels(-1);
 			break;
+        case 2:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
 		}
 
 		if (fragmentParameters != null && fragment != null) {
@@ -237,6 +243,15 @@ public class MainActivity extends ActionBarActivity
 		case 3:
 			mTitle = getString(R.string.title_section3);
 			break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
+                break;
+            case 5:
+                mTitle = getString(R.string.title_section5);
+                break;
+            case 6:
+                mTitle = getString(R.string.title_section6);
+                break;
 		}
 	}
 
