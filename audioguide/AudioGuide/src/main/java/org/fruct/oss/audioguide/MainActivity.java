@@ -23,9 +23,13 @@ import org.fruct.oss.audioguide.fragments.CommonFragment;
 import org.fruct.oss.audioguide.fragments.GetsFragment;
 import org.fruct.oss.audioguide.fragments.MapFragment;
 import org.fruct.oss.audioguide.fragments.NavigateFragment;
+import org.fruct.oss.audioguide.fragments.PointFragment;
 import org.fruct.oss.audioguide.fragments.TrackFragment;
 import org.fruct.oss.audioguide.fragments.edit.EditTrackFragment;
 import org.fruct.oss.audioguide.preferences.SettingsActivity;
+import org.fruct.oss.audioguide.track.ArrayStorage;
+import org.fruct.oss.audioguide.track.Point;
+import org.fruct.oss.audioguide.track.Track;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +46,8 @@ public class MainActivity extends ActionBarActivity
 	private static final String STATE_STACK = "stack-fragment";
 
 	private static final String TAG_PANEL_FRAGMENT = "panel-fragment";
+
+    private Track myPointsTrack;
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -183,6 +189,10 @@ public class MainActivity extends ActionBarActivity
 			return;
 		}
 
+        myPointsTrack = new Track("Test track", "Some descrip" , "Hname");
+        ArrayStorage remoteStorage = new ArrayStorage()
+                .insert(new Point("Vokzal", "Petrosavodsk vokzal", "", 66.784699, 34.345883),  myPointsTrack)
+                .insert(new Point("Neglinlka", "River neglinka", "", 61.777585, 34.355340),  myPointsTrack);
 
 		Fragment fragment = null;
 		switch (position) {
@@ -199,6 +209,8 @@ public class MainActivity extends ActionBarActivity
             initPanels(-1);
 			break;
         case 2:
+            fragment = PointFragment.newInstance(myPointsTrack);
+            initPanels(-1);
             break;
         case 4:
             break;
