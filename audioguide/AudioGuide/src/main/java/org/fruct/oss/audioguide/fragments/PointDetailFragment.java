@@ -35,7 +35,7 @@ public class PointDetailFragment extends Fragment implements FileListener {
 	private FileManager fileManager;
 
 	private String pendingUrl;
-	private ImageView imageView;
+	//private ImageView imageView;
 	private Bitmap imageBitmap;
 
 	/**
@@ -83,7 +83,7 @@ public class PointDetailFragment extends Fragment implements FileListener {
 		TextView description = (TextView) view.findViewById(android.R.id.text2);
 		description.setText(point.getDescription());
 
-		imageView = (ImageView) view.findViewById(android.R.id.icon);
+		//imageView = (ImageView) view.findViewById(android.R.id.icon);
 		tryUpdateImage();
 
 		setupCenterButton(view);
@@ -158,7 +158,7 @@ public class PointDetailFragment extends Fragment implements FileListener {
 				return;
 			}
 
-			imageView.setImageDrawable(new BitmapDrawable(Resources.getSystem(), newBitmap));
+			//imageView.setImageDrawable(new BitmapDrawable(Resources.getSystem(), newBitmap));
 
 			if (imageBitmap != null) {
 				imageBitmap.recycle();

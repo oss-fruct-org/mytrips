@@ -30,15 +30,6 @@
                 android:text="longdescription longdescriptionl ongdescriptionlon
                 gdescription longdescripti onlongde scription" />
 
-            <ImageView
-                android:id="@android:id/icon"
-                android:src="@android:drawable/dialog_frame"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:padding="16dp"
-
-                android:layout_alignParentRight="true"
-                />
         </RelativeLayout>
 
     </LinearLayout>
