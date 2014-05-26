@@ -58,17 +58,6 @@
         >
 
         <Button
-            android:id="@+id/button_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:textColor="@color/button_selector"
-            android:textSize="24sp"
-            android:text="Listen"
-            android:drawableLeft="@drawable/ic_action_play"
-            android:paddingBottom="16dp"/>
-
-        <Button
             android:id="@+id/button_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

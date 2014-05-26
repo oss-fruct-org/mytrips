@@ -86,7 +86,6 @@ public class PointDetailFragment extends Fragment implements FileListener {
 		imageView = (ImageView) view.findViewById(android.R.id.icon);
 		tryUpdateImage();
 
-		setupAudioButton(view);
 		setupCenterButton(view);
 
 		return view;
@@ -112,47 +111,7 @@ public class PointDetailFragment extends Fragment implements FileListener {
 		});
 	}
 
-	private void setupAudioButton(View view) {
-		final Button buttonPlay = (Button) view.findViewById(R.id.button_play);
-		final Button buttonStop = (Button) view.findViewById(R.id.button_stop);
 
-		buttonPlay.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (point == null)
-					return;
-
-				Intent intent = new Intent(AudioService.ACTION_PLAY,
-						Uri.parse(point.getAudioUrl()),
-						getActivity(), AudioService.class);
-				getActivity().startService(intent);
-
-				buttonPlay.setVisibility(View.GONE);
-				buttonStop.setVisibility(View.VISIBLE);
-			}
-		});
-
-		buttonStop.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent intent = new Intent(AudioService.ACTION_STOP,
-						null,
-						getActivity(), AudioService.class);
-				getActivity().startService(intent);
-
-				buttonPlay.setVisibility(View.VISIBLE);
-				buttonStop.setVisibility(View.GONE);
-			}
-		});
-
-		if (point.hasAudio()) {
-			buttonPlay.setVisibility(View.VISIBLE);
-		} else {
-			buttonPlay.setVisibility(View.GONE);
-		}
-
-		buttonStop.setVisibility(View.GONE);
-	}
 
 	@Override
     public void onAttach(Activity activity) {
