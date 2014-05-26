@@ -30,15 +30,6 @@
                 android:text="longdescription longdescriptionl ongdescriptionlon
                 gdescription longdescripti onlongde scription" />
 
-            <ImageView
-                android:id="@android:id/icon"
-                android:src="@android:drawable/dialog_frame"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:padding="16dp"
-
-                android:layout_alignParentRight="true"
-                />
         </RelativeLayout>
 
     </LinearLayout>
@@ -56,17 +47,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         >
-
-        <Button
-            android:id="@+id/button_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:textColor="@color/button_selector"
-            android:textSize="24sp"
-            android:text="Listen"
-            android:drawableLeft="@drawable/ic_action_play"
-            android:paddingBottom="16dp"/>
 
         <Button
             android:id="@+id/button_stop"

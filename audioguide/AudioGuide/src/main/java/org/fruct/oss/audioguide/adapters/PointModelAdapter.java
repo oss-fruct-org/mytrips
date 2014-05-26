@@ -109,7 +109,6 @@ public class PointModelAdapter extends BaseAdapter implements Closeable, ModelLi
 
 			holder.text1 = (TextView) view.findViewById(android.R.id.text1);
 			holder.text2 = (TextView) view.findViewById(android.R.id.text2);
-			holder.audioImage = (ImageView) view.findViewById(R.id.audioImage);
 			holder.icon = (ImageView) view.findViewById(android.R.id.icon);
 			holder.progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 		}
@@ -119,7 +118,6 @@ public class PointModelAdapter extends BaseAdapter implements Closeable, ModelLi
 
 		holder.text1.setText(point.getName());
 		holder.text2.setText(point.getDescription());
-		holder.audioImage.setVisibility(point.hasAudio() ? View.VISIBLE : View.GONE);
 		holder.icon.setImageDrawable(null);
 
 		if (point.hasPhoto()) {
@@ -210,7 +208,6 @@ public class PointModelAdapter extends BaseAdapter implements Closeable, ModelLi
 		TextView text1;
 		TextView text2;
 
-		ImageView audioImage;
 		ImageView icon;
 		ProgressBar progressBar;
 	}

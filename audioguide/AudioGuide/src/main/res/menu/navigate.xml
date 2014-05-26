@@ -5,6 +5,6 @@
     <item android:id="@+id/action_navigate"
           android:icon="@drawable/ic_action_volume_on"
           android:title="Follow"
-          app:showAsAction="always"
+          app:showAsAction="never"
         />
 </menu>

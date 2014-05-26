@@ -47,17 +47,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <ImageView
-            android:src="@drawable/ic_action_headphones"
-            android:layout_width="16dp"
-            android:layout_height="match_parent"
-            android:id="@+id/audioImage"
-            android:contentDescription="Image"
-            android:background="@null"
-            android:layout_margin="8dp"
-            />
-    </LinearLayout>
+        android:orientation="horizontal"></LinearLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"
