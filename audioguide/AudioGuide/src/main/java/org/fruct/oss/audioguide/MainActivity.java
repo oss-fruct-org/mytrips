@@ -48,7 +48,6 @@ public class MainActivity extends ActionBarActivity
 	private static final String TAG_PANEL_FRAGMENT = "panel-fragment";
 
     private Track myPointsTrack;
-
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
 	 */

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AudioGuide</string>
+    <string name="app_name">MyTrips</string>
 
-    <string name="title_section1">Р’РѕР№С‚Рё</string>
-    <!-- РџРѕРєР°Р·С‹РІР°РµС‚ С‚РѕР»СЊРєРѕ РєР°СЂС‚Сѓ-->
-    <string name="title_section2">РџРѕРєР°Р·Р°С‚СЊ С‚РѕС‡РєРё СЂСЏРґРѕРј</string>
-    <string name="title_section3">РњРѕРё С‚РѕС‡РєРё</string>
-    <string name="title_section4">РњРѕРё РјР°СЂС€СЂСѓС‚С‹</string>
-    <string name="title_section5">РњРѕРё РѕС„С„Р»Р°Р№РЅ-РєР°СЂС‚С‹</string>
-    <string name="title_section6">Рћ РїСЂРѕРіСЂР°РјРјРµ</string>
+    <string name="title_section1">Войти</string>
+    <!-- Показывает только карту-->
+    <string name="title_section2">Показать точки рядом</string>
+    <string name="title_section3">Мои точки</string>
+    <string name="title_section4">Мои маршруты</string>
+    <string name="title_section5">Мои оффлайн-карты</string>
+    <string name="title_section6">О программе</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

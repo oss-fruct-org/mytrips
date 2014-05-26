@@ -340,7 +340,6 @@ public class Utils {
 			conn.setRequestProperty("User-Agent", "RoadSigns/0.2 (http://oss.fruct.org/projects/roadsigns/)");
 			conn.setRequestProperty("Content-Type", "Content-Type: text/xml;charset=utf-8");
 
-
 			if (postQuery != null) {
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
 				writer.write(postQuery);
@@ -348,13 +347,13 @@ public class Utils {
 				writer.close();
 			}
 
+			log.trace("Request url {} data {}", urlString, postQuery);
 			conn.connect();
 
 			int responseCode = conn.getResponseCode();
 			responseStream = conn.getInputStream();
 			String response = Utils.inputStreamToString(responseStream);
 
-			log.trace("Request url {} data {}", urlString, postQuery);
 			log.trace("Response code {}, response {}", responseCode, response);
 
 			return response;

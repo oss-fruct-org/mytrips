@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import org.fruct.oss.audioguide.App;
 import org.fruct.oss.audioguide.R;
+import org.fruct.oss.audioguide.gets.Gets;
 import org.fruct.oss.audioguide.parsers.FileContent;
 import org.fruct.oss.audioguide.parsers.GetsException;
 import org.fruct.oss.audioguide.parsers.GetsResponse;
@@ -30,8 +31,6 @@ import org.fruct.oss.audioguide.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
@@ -61,6 +60,8 @@ public class UploadFragment extends DialogFragment {
 
 	public UploadFragment() {
 	}
+
+
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -128,7 +129,7 @@ public class UploadFragment extends DialogFragment {
 
 			assert titleEdit != null;
 			String request = String.format(Locale.ROOT, GetsStorage.UPLOAD_FILE, token, titleEdit.getText().toString());
-			uploadStage1(GetsStorage.GETS_SERVER + "/files/uploadFile.php", request);
+			uploadStage1(Gets.GETS_SERVER + "/files/uploadFile.php", request);
 		}
 	};
 
