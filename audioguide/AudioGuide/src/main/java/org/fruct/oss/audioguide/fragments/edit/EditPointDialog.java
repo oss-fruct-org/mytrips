@@ -45,11 +45,6 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 	private EditText editDescription;
 	private EditText editUrl;
 
-	private TextView imageFileLabel;
-	private Button imageFileButton;
-
-	private TextView audioFileLabel;
-	private Button audioFileButton;
 
 	public EditPointDialog(Point point) {
 		if (point == null) {
@@ -69,11 +64,9 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 		editName = (EditText) view.findViewById(R.id.text_title);
 		editDescription = (EditText) view.findViewById(R.id.text_description);
 
-		imageFileLabel = (TextView) view.findViewById(R.id.image_file_title);
-		imageFileButton = (Button) view.findViewById(R.id.image_file_button);
 
-		audioFileLabel = (TextView) view.findViewById(R.id.audio_file_title);
-		audioFileButton = (Button) view.findViewById(R.id.audio_file_button);
+
+
 		//editUrl = (EditText) view.findViewById(R.id.edit_url);
 
 		if (point != null) {
@@ -82,18 +75,7 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 			//if (!Utils.isNullOrEmpty(point.point())) editUrl.setText(point.getUrl());
 		}
 
-		imageFileButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				showFileChooserDialog("image/*", REQUEST_CODE_IMAGE);
-			}
-		});
-		audioFileButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				showFileChooserDialog("audio/*", REQUEST_CODE_AUDIO);
-			}
-		});
+
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(AUtils.getDialogContext(getActivity()));
 		builder.setView(view)
@@ -143,7 +125,7 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 			String title = data.getStringExtra(FileManagerFragment.RESULT_TITLE);
 			point.setPhotoUrl(data.getStringExtra(FileManagerFragment.RESULT_URL));
 
-			imageFileLabel.setText(title);
+
 		} else if (requestCode == REQUEST_CODE_AUDIO && resultCode == Activity.RESULT_OK) {
 			Uri uri = data.getData();
 			assert uri != null;
@@ -152,7 +134,7 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 			String title = data.getStringExtra(FileManagerFragment.RESULT_TITLE);
 			point.setAudioUrl(data.getStringExtra(FileManagerFragment.RESULT_URL));
 
-			audioFileLabel.setText(title);
+
 		}
 	}
 
