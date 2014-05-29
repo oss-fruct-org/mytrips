@@ -2,13 +2,16 @@ package org.fruct.oss.audioguide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
 
+import org.fruct.oss.audioguide.adapters.TrackModelAdapter;
 import org.fruct.oss.audioguide.fragments.CommonFragment;
 import org.fruct.oss.audioguide.fragments.GetsFragment;
 import org.fruct.oss.audioguide.fragments.MapFragment;
@@ -30,10 +34,13 @@ import org.fruct.oss.audioguide.preferences.SettingsActivity;
 import org.fruct.oss.audioguide.track.ArrayStorage;
 import org.fruct.oss.audioguide.track.Point;
 import org.fruct.oss.audioguide.track.Track;
+import org.fruct.oss.audioguide.track.TrackManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends ActionBarActivity
 		implements NavigationDrawerFragment.NavigationDrawerCallbacks, MultiPanel,
 		TestFragment.OnFragmentInteractionListener {
@@ -47,6 +54,8 @@ public class MainActivity extends ActionBarActivity
 
 	private static final String TAG_PANEL_FRAGMENT = "panel-fragment";
 
+    private TrackManager trackManager;
+    private TrackModelAdapter trackAdapter;
     private Track myPointsTrack;
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -105,7 +114,12 @@ public class MainActivity extends ActionBarActivity
 		} else {
 			updateUpButton();
 		}
-	}
+
+
+        trackManager = TrackManager.getInstance();
+
+
+    }
 
 	@Override
 	protected void onStart() {
@@ -133,7 +147,9 @@ public class MainActivity extends ActionBarActivity
 
 	@Override
 	protected void onDestroy() {
+        trackAdapter.close();
 		super.onDestroy();
+
 		log.trace("MainActivity onDestroy");
 
 		//FragmentTransaction trans = fragmentManager.beginTransaction();
@@ -188,12 +204,12 @@ public class MainActivity extends ActionBarActivity
 			return;
 		}
 
-        myPointsTrack = new Track("Test track", "Some descrip" , "Hname");
-        ArrayStorage remoteStorage = new ArrayStorage()
-                .insert(new Point("Vokzal", "Petrosavodsk vokzal", "", 66.784699, 34.345883),  myPointsTrack)
-                .insert(new Point("Neglinlka", "River neglinka", "", 61.777585, 34.355340),  myPointsTrack);
 
-		Fragment fragment = null;
+        //Track track = new Track("fsgjh","sdahjwk"," ");
+
+        //Track track = trackAdapter.getItem(0);
+
+        Fragment fragment = null;
 		switch (position) {
 		case 0:
             fragment = GetsFragment.newInstance();
@@ -208,12 +224,17 @@ public class MainActivity extends ActionBarActivity
             initPanels(-1);
 			break;
         case 2:
-            fragment = PointFragment.newInstance(myPointsTrack);
+            List<Track> tracks = new ArrayList<Track>();
+            tracks = trackManager.getTracks();
+            Track track = tracks.get(0);
+            fragment = PointFragment.newInstance(track);
             initPanels(-1);
             break;
         case 4:
+            fragment = null;
             break;
         case 5:
+            fragment = null;
             break;
 		}
 

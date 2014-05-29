@@ -67,7 +67,7 @@ public class TrackFragment extends ListFragment implements PopupMenu.OnMenuItemC
 
 		pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-		trackManager = TrackManager.getInstance();
+        trackManager = TrackManager.getInstance();
 
 		trackAdapter = new TrackModelAdapter(getActivity(), R.layout.list_track_item, trackManager.getTracksModel());
 		trackAdapter.addTrackHighlight(trackManager.getEditingTrack(), HIGHLIGHT_COLOR);
