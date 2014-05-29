@@ -26,41 +26,6 @@ import org.fruct.oss.audioguide.track.TrackManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Created by ASUS on 29.05.2014.
- */
-
-
-
-        import android.app.Activity;
-        import android.content.SharedPreferences;
-        import android.os.Bundle;
-        import android.preference.PreferenceManager;
-        import android.support.v4.app.FragmentTransaction;
-        import android.support.v4.app.ListFragment;
-        import android.support.v7.app.ActionBar;
-        import android.support.v7.app.ActionBarActivity;
-        import android.support.v7.widget.PopupMenu;
-        import android.view.LayoutInflater;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.SubMenu;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.ListView;
-        import android.widget.SpinnerAdapter;
-
-        import org.fruct.oss.audioguide.MultiPanel;
-        import org.fruct.oss.audioguide.R;
-        import org.fruct.oss.audioguide.adapters.TrackModelAdapter;
-        import org.fruct.oss.audioguide.fragments.edit.EditTrackDialog;
-        import org.fruct.oss.audioguide.track.GetsStorage;
-        import org.fruct.oss.audioguide.track.Track;
-        import org.fruct.oss.audioguide.track.TrackManager;
-        import org.slf4j.Logger;
-        import org.slf4j.LoggerFactory;
 
 public class PointsFragment extends ListFragment implements PopupMenu.OnMenuItemClickListener {
     private final static Logger log = LoggerFactory.getLogger(TrackFragment.class);

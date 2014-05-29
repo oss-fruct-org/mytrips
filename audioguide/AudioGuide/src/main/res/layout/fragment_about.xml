@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.fruct.oss.audioguide.fragments.GetsFragment"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/login_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="О программе"
+        style="@style/HeaderText"
+        />
+
+    <TextView
+        android:layout_width="314dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:autoText="false"
+        android:layout_gravity="center_horizontal"
+        android:text='Приложение "Мои путешествия"\n Создатели: Басимов В., Ермаков В., Павлова А., Пробичев М., Салов С.\n\nПетрГУ, 2014'
+        android:layout_weight="0.17" />
+
+
+    Button
+        android:id="@+id/sign_in_button"
+        style="@style/Button"
+        android:text="Sign in"/>
+
+    Button
+        android:id="@+id/logout_button"
+        style="@style/Button"
+        android:text="Logout"
+        />
+</LinearLayout>
