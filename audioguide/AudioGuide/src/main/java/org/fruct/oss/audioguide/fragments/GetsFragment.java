@@ -41,7 +41,6 @@ public class GetsFragment extends Fragment implements WebViewDialog.Listener, Sh
 	private String sessionId;
 	private SharedPreferences pref;
 	private Button logoutButton;
-	private Button manageFilesButton;
 	private Button signInButton;
 
 	public static GetsFragment newInstance() {
@@ -62,7 +61,7 @@ public class GetsFragment extends Fragment implements WebViewDialog.Listener, Sh
 		assert view != null;
 
 		signInButton = (Button) view.findViewById(R.id.sign_in_button);
-		manageFilesButton = (Button) view.findViewById(R.id.manage_files_button);
+
 		logoutButton = ((Button) view.findViewById(R.id.logout_button));
 		loginLabel = ((TextView) view.findViewById(R.id.login_label));
 
@@ -84,13 +83,7 @@ public class GetsFragment extends Fragment implements WebViewDialog.Listener, Sh
 			}
 		});
 
-		manageFilesButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				FileManagerFragment fileManager = FileManagerFragment.newInstance(false);
-				multiPanel.replaceFragment(fileManager, GetsFragment.this);
-			}
-		});
+
 
 		pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		pref.registerOnSharedPreferenceChangeListener(this);
@@ -177,13 +170,6 @@ public class GetsFragment extends Fragment implements WebViewDialog.Listener, Sh
 			loginLabel.setText("Signed in");
 		}
 
-		if (pref.getString(GetsStorage.PREF_AUTH_TOKEN, null) != null) {
-			logoutButton.setVisibility(View.VISIBLE);
-			manageFilesButton.setVisibility(View.VISIBLE);
-		} else {
-			logoutButton.setVisibility(View.GONE);
-			manageFilesButton.setVisibility(View.GONE);
-		}
 	}
 
 	@Override

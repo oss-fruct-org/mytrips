@@ -28,6 +28,7 @@ import org.fruct.oss.audioguide.fragments.GetsFragment;
 import org.fruct.oss.audioguide.fragments.MapFragment;
 import org.fruct.oss.audioguide.fragments.NavigateFragment;
 import org.fruct.oss.audioguide.fragments.PointFragment;
+import org.fruct.oss.audioguide.fragments.PointsFragment;
 import org.fruct.oss.audioguide.fragments.TrackFragment;
 import org.fruct.oss.audioguide.fragments.edit.EditTrackFragment;
 import org.fruct.oss.audioguide.preferences.SettingsActivity;
