@@ -21,7 +21,7 @@
         android:textSize="20dp"
         android:autoText="false"
         android:layout_gravity="center_horizontal"
-        android:text='Приложение "Мои путешествия"\n Создатели: Басимов В., Ермаков В., Павлова А., Пробичев М., Салов С.\n\nПетрГУ, 2014'
+        android:text='Приложение "Мои путешествия"\nСоздатели: Басимов В., Ермаков В., Павлова А., Пробичев М., Салов С.\n\nПетрГУ, 2014'
         android:layout_weight="0.17" />
 
 
