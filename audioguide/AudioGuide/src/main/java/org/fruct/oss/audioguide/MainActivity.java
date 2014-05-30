@@ -234,10 +234,6 @@ public class MainActivity extends ActionBarActivity
             initPanels(-1);
             break;
         case 4:
-            fragment = OfflineMaps.newInstance();
-            initPanels(-1);
-            break;
-        case 5:
             fragment = AdoutFragment.newInstance();
             initPanels(-1);
             break;
@@ -283,10 +279,8 @@ public class MainActivity extends ActionBarActivity
             case 4:
                 mTitle = getString(R.string.title_section4);
                 break;
+
             case 5:
-                mTitle = getString(R.string.title_section5);
-                break;
-            case 6:
                 mTitle = getString(R.string.title_section6);
                 break;
 		}
