@@ -27,6 +27,7 @@ import org.fruct.oss.audioguide.fragments.CommonFragment;
 import org.fruct.oss.audioguide.fragments.GetsFragment;
 import org.fruct.oss.audioguide.fragments.MapFragment;
 import org.fruct.oss.audioguide.fragments.NavigateFragment;
+import org.fruct.oss.audioguide.fragments.OfflineMaps;
 import org.fruct.oss.audioguide.fragments.PointFragment;
 import org.fruct.oss.audioguide.fragments.PointsFragment;
 import org.fruct.oss.audioguide.fragments.TrackFragment;
@@ -233,7 +234,8 @@ public class MainActivity extends ActionBarActivity
             initPanels(-1);
             break;
         case 4:
-            fragment = null;
+            fragment = OfflineMaps.newInstance();
+            initPanels(-1);
             break;
         case 5:
             fragment = AdoutFragment.newInstance();
