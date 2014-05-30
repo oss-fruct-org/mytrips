@@ -398,7 +398,7 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 			if (globalEditTrack == track) {
 				// Save track that user edits
 				editOverlay = trackOverlay;
-				editOverlay.setColor(0xffaaccee);
+				editOverlay.setColor(0x99ff0000); 
 				editTrack = track;
 				trackOverlay.setEditable(true);
 				trackOverlay.setListener(editOverlayListener);

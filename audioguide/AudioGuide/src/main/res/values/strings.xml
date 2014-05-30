@@ -2,9 +2,9 @@
 <resources>
     <string name="app_name">MyTrips</string>
 
-    <string name="title_section1">Войти</string>
+    <string name="title_section1">Карта</string>
     <!-- Только отображение карты-->
-    <string name="title_section2">Показать точки рядом</string>
+    <string name="title_section2">Аутентификация</string>
     <string name="title_section3">Мои точки</string>
     <string name="title_section4">Мои маршруты</string>
     <string name="title_section5">Мои оффлайн-карты</string>
