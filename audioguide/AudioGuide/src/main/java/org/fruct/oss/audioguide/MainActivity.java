@@ -214,11 +214,11 @@ public class MainActivity extends ActionBarActivity
 
         Fragment fragment = null;
 		switch (position) {
-		case 0:
+		case 1:
             fragment = GetsFragment.newInstance();
             initPanels(-1);
 			break;
-		case 1:
+		case 0:
 			fragment = MapFragment.newInstance();
 			initPanels(1);
 			break;
