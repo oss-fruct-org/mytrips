@@ -140,7 +140,7 @@ public class AdoutFragment extends Fragment implements WebViewDialog.Listener, S
 
             @Override
             protected void onError() {
-                showError("Error login");
+                showError("Ошибка входа");
             }
         });
     }
@@ -150,7 +150,7 @@ public class AdoutFragment extends Fragment implements WebViewDialog.Listener, S
         gets.addRequest(new LoginStage2Request(gets, sessionId) {
             @Override
             protected void onError() {
-                showError("Error login");
+                showError("Ошибка входа");
             }
         });
     }
@@ -164,9 +164,9 @@ public class AdoutFragment extends Fragment implements WebViewDialog.Listener, S
         String token = pref.getString(GetsStorage.PREF_AUTH_TOKEN, null);
 
         if (token == null) {
-            loginLabel.setText("Not signed in");
+            loginLabel.setText("Вход не выполнен");
         } else {
-            loginLabel.setText("Signed in");
+            loginLabel.setText("Вход выполнен");
         }
 
     }

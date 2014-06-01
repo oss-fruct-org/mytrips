@@ -124,10 +124,10 @@ public class CommonFragment extends Fragment {
 
 	private void updateMenuIcon(boolean isWatchActive) {
 		if (isWatchActive) {
-			navigateAction.setTitle("Unfollow");
+			navigateAction.setTitle("Не следовать");
 			navigateAction.setIcon(R.drawable.ic_action_volume_muted);
 		} else {
-			navigateAction.setTitle("Follow");
+			navigateAction.setTitle("Следовать");
 			navigateAction.setIcon(R.drawable.ic_action_volume_on);
 		}
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MyTrips</string>
+    <string name="app_name">Мои путешествия</string>
 
     <string name="title_section1">Карта</string>
     <!-- Только отображение карты-->
-    <string name="title_section2">Аутентификация</string>
+    <string name="title_section2">Авторизация</string>
     <string name="title_section3">Мои точки</string>
     <string name="title_section4">Мои маршруты</string>
     <string name="title_section6">О программе</string>
@@ -12,24 +12,24 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Настройки</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_file_chooser">Choose File</string>
     <string name="hello_world">Hello world!</string>
-    <string name="settings">Settings</string>
+    <string name="settings">Настройки</string>
 
 
     <string-array name="track_spinner_array">
-        <item>All</item>
-        <item>Private</item>
-        <item>Public</item>
-        <item>Local</item>
-        <item>Active</item>
+        <item>Все</item>
+        <item>Приватные</item>
+        <item>Публичные</item>
+        <item>Локальные</item>
+        <item>Активные</item>
 
     </string-array>
     
     <plurals name="pref_seek_bar_summary">
-        <item quantity="one">Play sound if point nearer than %d meter</item>
-        <item quantity="other">Play sound if point nearer than %d meters</item>
+        <item quantity="one">Показывать точки в радиусе %d метров</item>
+        <item quantity="other">Показывать точки в радиусе %d метров</item>
     </plurals>
 </resources>

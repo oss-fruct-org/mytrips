@@ -109,9 +109,9 @@ public class TrackDetailFragment extends Fragment {
 
 	private void setActivateButtonText(Button button) {
 		if (track.isActive())
-			button.setText("Deactivate");
+			button.setText("Деактивировать");
 		else
-			button.setText("Activate");
+			button.setText("Активировать");
 	}
 
 	@Override

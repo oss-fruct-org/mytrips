@@ -2,7 +2,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <org.fruct.oss.audioguide.preferences.SliderPreference
-        android:title="Range"
+        android:title="Радиус"
         android:summary="@plurals/pref_seek_bar_summary"
         android:text="@plurals/pref_seek_bar_summary"
         android:key="pref_range"
@@ -10,8 +10,8 @@
         android:defaultValue="50"/>
 
     <CheckBoxPreference
-        android:title="Wake mode"
-        android:summary="Keep device awake while tracking"
+        android:title="Режим включенного экрана"
+        android:summary="Не выключать экран, при движении по маршруту"
         android:key="pref_wake"
         android:defaultValue="true"
         />

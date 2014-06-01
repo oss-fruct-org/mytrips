@@ -55,7 +55,7 @@
             android:background="@null"
             android:textColor="@color/button_selector"
             android:textSize="24sp"
-            android:text="Stop"
+            android:text="Стоп"
             android:drawableLeft="@drawable/ic_action_stop"
             android:paddingBottom="16dp"
             android:visibility="gone"/>
@@ -67,7 +67,7 @@
             android:background="@null"
             android:textColor="@color/button_selector"
             android:textSize="24sp"
-            android:text="Show on map"
+            android:text="Показать на карте"
             android:drawableLeft="@drawable/ic_action_place"
             android:paddingBottom="16dp"/>
     </LinearLayout>
