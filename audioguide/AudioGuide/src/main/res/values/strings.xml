@@ -18,6 +18,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="settings">Настройки</string>
 
+    <string name="add_point">Добавить точку</string>
+    <string name="add_route">Добавить маршрут </string>
+    <string name="location">Местоположение</string>
+    <string name="place">Место</string>
+    <string name="follow">Следовать</string>
+    <string name="refresh">Обновить</string>
 
     <string-array name="track_spinner_array">
         <item>Все</item>

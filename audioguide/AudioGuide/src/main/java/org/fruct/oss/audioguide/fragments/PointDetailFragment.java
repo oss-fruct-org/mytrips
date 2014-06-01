@@ -106,7 +106,7 @@ public class PointDetailFragment extends Fragment implements FileListener {
 				Bundle params = new Bundle();
 				params.putParcelable("point", point);
 
-				frag.selectItem(1, params);
+				frag.selectItem(0, params);
 			}
 		});
 	}

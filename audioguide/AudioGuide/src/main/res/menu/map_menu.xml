@@ -4,16 +4,16 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_add"
           android:icon="@drawable/ic_action_new"
-          android:title="Добавить точку"
+          android:title="@string/add_point"
           app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_place"
           android:icon="@drawable/ic_action_accept"
-          android:title="Место"
+          android:title="@string/place"
           app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_find_me"
           android:icon="@drawable/ic_action_location_found"
-          android:title="Местоположение"
+          android:title="@string/location"
           app:showAsAction="always" />
 </menu>
