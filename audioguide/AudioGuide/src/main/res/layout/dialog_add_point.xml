@@ -7,16 +7,16 @@
 
     <EditText
         android:id="@+id/text_title"
-        android:hint="Title"
+        android:hint="Название"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/text_description"
-        android:hint="Description"
         android:inputType="text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Описание" />
 
 </LinearLayout>

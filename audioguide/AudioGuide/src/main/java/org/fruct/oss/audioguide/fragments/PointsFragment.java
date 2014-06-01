@@ -159,25 +159,25 @@ public class PointsFragment extends ListFragment implements PopupMenu.OnMenuItem
         Menu menu = popupMenu.getMenu();
 
         if (track.isLocal()) {
-            popupShowPoints = menu.add("Show points");
+            popupShowPoints = menu.add("Показать точки");
 
             if (track.isActive()) {
-                popupItemDeactivate = menu.add("Deactivate");
+                popupItemDeactivate = menu.add("Деактивировать");
             } else {
-                popupItemActivate = menu.add("Activate");
+                popupItemActivate = menu.add("Активировать");
             }
         } else {
-            popupItemDownload = menu.add("Download");
+            popupItemDownload = menu.add("Загрузить");
         }
 
         if (track.isPrivate() && track.isLocal()) {
-            SubMenu editingMenu = menu.addSubMenu("Editing");
+            SubMenu editingMenu = menu.addSubMenu("Изменение");
 
-            popupItemEdit = editingMenu.add("Edit description");
-            popupItemEditPoints = editingMenu.add("Edit points");
+            popupItemEdit = editingMenu.add("Изменить описание");
+            popupItemEditPoints = editingMenu.add("Изменить точки");
 
             if (pref.getString(GetsStorage.PREF_AUTH_TOKEN, null) != null) {
-                popupItemSend = editingMenu.add("Send to server");
+                popupItemSend = editingMenu.add("Отправить на сервер");
             }
         }
 
