@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Мои путешествия</string>
-
     <string name="title_section1">Карта</string>
     <!-- Только отображение карты-->
     <string name="title_section2">Авторизация</string>
