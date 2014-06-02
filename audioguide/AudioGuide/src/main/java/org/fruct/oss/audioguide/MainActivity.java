@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import org.fruct.oss.audioguide.adapters.TrackModelAdapter;
 import org.fruct.oss.audioguide.fragments.CommonFragment;
-import org.fruct.oss.audioguide.fragments.EmptyFragment;
+//import org.fruct.oss.audioguide.fragments.EmptyFragment;
 import org.fruct.oss.audioguide.fragments.GetsFragment;
 import org.fruct.oss.audioguide.fragments.MapFragment;
 import org.fruct.oss.audioguide.fragments.NavigateFragment;
@@ -38,6 +38,7 @@ import org.fruct.oss.audioguide.preferences.SettingsActivity;
 import org.fruct.oss.audioguide.track.ArrayStorage;
 import org.fruct.oss.audioguide.track.Point;
 import org.fruct.oss.audioguide.track.Track;
+import org.fruct.oss.audioguide.fragments.NotipsFragment;
 import org.fruct.oss.audioguide.track.TrackManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -232,22 +233,31 @@ public class MainActivity extends ActionBarActivity
             tracks = trackManager.getTracks();
 
             if(tracks.size() == 0 ){
-                fragment = TrackFragment.newInstance();
+                fragment = NotipsFragment.newInstance();
                 initPanels(-1);
                 break;
             }
 
-            Track track = tracks.get(0);
-            if(!track.isLocal()){
-                fragment = TrackFragment.newInstance();
-                initPanels(-1);
-                break;
+            int i=0;
+            while(i < tracks.size())
+            {
+                Track track = tracks.get(i);
+                if(track.isLocal() && track.isPrivate())
+                {
+                    fragment = PointFragment.newInstance(track);
+                    initPanels(-1);
+                    break;
+                }
+                i++;
             }
-            else {
-                fragment = PointFragment.newInstance(track);
-                initPanels(-1);
+              if(i == tracks.size())
+             {
+                 fragment = NotipsFragment.newInstance();
+                 initPanels(-1);
                 break;
-            }
+             }
+            break;
+
         case 4:
             fragment = AdoutFragment.newInstance();
             initPanels(-1);
