@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import org.fruct.oss.audioguide.adapters.TrackModelAdapter;
 import org.fruct.oss.audioguide.fragments.CommonFragment;
+import org.fruct.oss.audioguide.fragments.EmptyFragment;
 import org.fruct.oss.audioguide.fragments.GetsFragment;
 import org.fruct.oss.audioguide.fragments.MapFragment;
 import org.fruct.oss.audioguide.fragments.NavigateFragment;
@@ -229,10 +230,24 @@ public class MainActivity extends ActionBarActivity
         case 2:
             List<Track> tracks = new ArrayList<Track>();
             tracks = trackManager.getTracks();
+
+            if(tracks.size() == 0 ){
+                fragment = TrackFragment.newInstance();
+                initPanels(-1);
+                break;
+            }
+
             Track track = tracks.get(0);
-            fragment = PointFragment.newInstance(track);
-            initPanels(-1);
-            break;
+            if(!track.isLocal()){
+                fragment = TrackFragment.newInstance();
+                initPanels(-1);
+                break;
+            }
+            else {
+                fragment = PointFragment.newInstance(track);
+                initPanels(-1);
+                break;
+            }
         case 4:
             fragment = AdoutFragment.newInstance();
             initPanels(-1);

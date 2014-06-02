@@ -29,13 +29,19 @@ android {
         }
     }
 
-    if (false) {
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    if (true) {
         signingConfigs {
             release {
-                storeFile file(System.getenv("KEYSTORE"))
-                storePassword System.getenv("KEYSTORE_PASSWORD")
-                keyAlias System.getenv("KEY_ALIAS")
-                keyPassword System.getenv("KEY_PASSWORD")
+                storeFile file("C:\\Users\\Admin\\APKkey\\myTrips.jks")
+                storePassword "guitarbing"
+                keyAlias "myTrips"
+                keyPassword "guitarbing"
             }
         }
 
@@ -53,17 +59,8 @@ android {
                 if (false) {
                     runProguard true
                     proguardFile getDefaultProguardFile('proguard-android.txt')
-                    proguardFile file('roadsigns-rules.txt')
-                }
-            }
-        }
 
-        android {
-            lintOptions {
-                checkReleaseBuilds false
-                // Or, if you prefer, you can continue to check for errors in release builds,
-                // but continue the build even when errors are found:
-                abortOnError false
+                }
             }
         }
 
