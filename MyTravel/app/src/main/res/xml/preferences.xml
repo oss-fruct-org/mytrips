@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <org.fruct.oss.audioguide.preferences.SliderPreference
+        android:title="Range"
+        android:summary="@plurals/pref_seek_bar_summary"
+        android:text="@plurals/pref_seek_bar_summary"
+        android:key="pref_range"
+        android:max="1000"
+        android:defaultValue="50"/>
+
+    <CheckBoxPreference
+        android:title="Wake mode"
+        android:summary="Keep device awake while tracking"
+        android:key="pref_wake"
+        android:defaultValue="true"
+        />
+
+    <org.fruct.oss.audioguide.preferences.SliderPreference
+        android:title="Load radius"
+        android:summary="@plurals/pref_load_radius_summary"
+        android:text="@plurals/pref_load_radius_summary"
+        android:key="pref_load_radius"
+        android:max="10000"
+        android:defaultValue="1000"
+        exponential="true"
+        />
+</PreferenceScreen>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:minHeight="?android:listPreferredItemHeight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@android:id/icon"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_height="48dp"
+        android:layout_width="48dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="6dp"/>
+
+    <LinearLayout
+        android:layout_toLeftOf="@+id/buttonsLayout"
+        android:layout_toRightOf="@android:id/icon"
+        android:id="@+id/text_layout"
+
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@android:id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#ff58585B"
+            tools:text="Hello world Hello world"
+            />
+
+        <TextView
+            android:id="@android:id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#ff58585B"
+            tools:text="Hello world qweqweqwe qwewww"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/buttonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@drawable/ic_action_headphones"
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:id="@+id/audioImage"
+            android:contentDescription="Image"
+            android:background="@null"
+            android:layout_margin="8dp"
+            />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/text_layout"
+        android:paddingBottom="2dp"
+        android:visibility="invisible"
+        />
+
+    <View
+        android:id="@+id/position_bottom"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#ffffff00"
+        android:layout_alignParentBottom="true" />
+
+    <View
+        android:id="@+id/position_top"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#ffffff00"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>
