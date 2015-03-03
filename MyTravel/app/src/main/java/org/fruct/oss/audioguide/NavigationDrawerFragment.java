@@ -36,8 +36,8 @@ import org.slf4j.LoggerFactory;
 public class NavigationDrawerFragment extends Fragment {
 	public static final Logger log = LoggerFactory.getLogger(NavigationDrawerFragment.class);
 
-	private static final int POSITION_SETTINGS = 4;
-	private static final int POSITION_HELP = 5;
+	private static final int POSITION_SETTINGS = -1;
+	private static final int POSITION_HELP = 4;
 
 	/**
 	 * Remember the position of the selected item.
@@ -64,7 +64,7 @@ public class NavigationDrawerFragment extends Fragment {
 	private ListView mDrawerListView;
 	private View mFragmentContainerView;
 
-	private int mCurrentSelectedPosition = 0;
+	private int mCurrentSelectedPosition = 1;
 	private boolean mFromSavedInstanceState;
 	private boolean mUserLearnedDrawer;
 
@@ -83,11 +83,13 @@ public class NavigationDrawerFragment extends Fragment {
 		if (savedInstanceState != null) {
 			mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
 			mFromSavedInstanceState = true;
+            log.error("state_selected_pos = {}", mCurrentSelectedPosition);
 		}
 
 		// Select either the default item (0) or the last selected item.
 		if (!mFromSavedInstanceState) {
 			selectItem(mCurrentSelectedPosition);
+            log.error("not from  savedstate = {}", mCurrentSelectedPosition);
 		}
 	}
 
@@ -112,7 +114,7 @@ public class NavigationDrawerFragment extends Fragment {
 					getActivity().startActivity(new Intent(getActivity(),
 							Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
 									? SettingsActivity.class
-									: SettingsActivityCompat.class));
+									: SettingsActivityCompat.class)); //: SettingsActivityCompat.class));
 				else
 					selectItem(position);
 			}
@@ -124,9 +126,9 @@ public class NavigationDrawerFragment extends Fragment {
 				new String[]{
 						getString(R.string.title_section1),
 						getString(R.string.title_section2),
-						getString(R.string.title_section3),
-						getString(R.string.title_section4),
 						getString(R.string.title_section5),
+						getString(R.string.title_section4),
+						//getString(R.string.title_section5),
 						getString(R.string.title_section6)
 				}));
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);

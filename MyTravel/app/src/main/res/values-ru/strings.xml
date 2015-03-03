@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Мои путешествия</string>
+
+    <string name="title_section1">Треки</string>
+    <string name="title_section2">Карта</string>
+    <string name="title_section3">GeTS</string>
+    <string name="title_section4">О приложении</string>
+    <string name="title_section5">Настройки</string>
+    <string name="title_section6">Помощь</string>
+
+    <string name="navigation_drawer_open">Открыть панель навигации</string>
+    <string name="navigation_drawer_close">Закрыть панель навигации</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Настройки</string>
+    <string name="hello_blank_fragment">Пустой фрагмент</string>
+    <string name="title_activity_file_chooser">Выберите файл</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="settings">Настройки</string>
+    <string name="delete_track_server">С сервера</string>
+    <string name="delete_track_local">Локально</string>
+    <string name="delete_track">Удалить трек</string>
+    <string name="track"   >Трек:   </string>
+    <string name="category">Категория:</string>
+    <string-array name="track_spinner_array">
+        <item>Все</item>
+        <item>Приватные</item>
+        <item>Общие</item>
+        <item>Локальные</item>
+        <item>Активные</item>
+    </string-array>
+
+    <plurals name="pref_seek_bar_summary">
+        <item quantity="one">Дальность точки %d метр</item>
+        <item quantity="other">Дальность точки  %d метров</item>
+        <item quantity="many">Дальность точки %d метров</item>
+    </plurals>
+    <plurals name="pref_load_radius_summary">
+        <item quantity="one">Загружать точки ближе чем %d метр</item>
+        <item quantity="other">Загружать точки ближе чем %d метров</item>
+        <item quantity="many">Загружать точки ближе чем %d метров</item>
+    </plurals>
+
+    <string name="title_activity_help">Помощь</string>
+    <string name = "about_string">Приложение является частью гранта KA322 программы “Karelia ENPI CBC”, которая фондируется Европейским союзом, Российской федерацией и Республикой Финляндией. \n\nВерсия: 0.1</string>
+
+    <!-- Preferences strings -->
+    <string name = "gets_not_logged">Не авторизован</string>
+    <string name = "gets_logged">Авторизован</string>
+    <string name = "loggin_button">Войти</string>
+    <string name = "logout_button">Выйти</string>
+    <string name = "gets_autho">Авторизация в GeTS</string>
+
+    <string name = "setloadrad">Радиус загрузки</string>
+    <string name = "setpointrange">Дальность активации точки</string>
+    <!-- Help -->
+
+    <string name="refresh">Обновить</string>
+    <string name="filter">Фильтр</string>
+    <string name="refresh1">Нажмите, чтобы обновить список точек или треков</string>
+    <string name="filter1">Используйте "Фильтр", чтобы отображать точки из выбранных категорий </string>
+
+    <string name="tracks1">Нажмите "Добавить", чтобы создать трек</string>
+    <string name="tracks">Треки</string>
+    <string name="refresh2">Обновить список треков</string>
+
+    <string name="activate">Активировать</string>
+    <string name="save">Сохранить</string>
+    <string name="activate1">Отобразить трек на карте, скрыв все остальное</string>
+    <string name="save1">Сохранить контент трека на устройство</string>
+
+    <string name="delete">Удалить</string>
+    <string name="delete1">Удалить трек. Приложение спросит, надо ли удалить трек с устройства или с сервера</string>
+    <string name="modes">Режимы</string>
+    <string name="modes1">Карта имеет два режима: режим одного трека и режим всех треков</string>
+    <string name="stm">Режим одного трека</string>
+    <string name="stm1">Отображается только активный трек</string>
+    <string name="atm">Режим всех треков</string>
+    <string name="atm1">Отображаются все загруженные точки и треки</string>
+
+    <string name="search">Поиск</string>
+    <string name="search1">Поиск ближайших точек. Радиус поиска может быть изменен в окне настроек.</string>
+    <string name="place">Установить</string>
+    <string name="place1">Устанавливает позицию в выбранной точке</string>
+
+    <string name="addpoint">Добавить точку</string>
+    <string name="addpoint1">Создаст новую точку</string>
+
+    <string name="pointmenu">Меню точки</string>
+    <string name="pointmenu1">Используйте долгое нажатие, чтобы получить доступ к меню точки</string>
+    <string name="att">Добавить</string>
+    <string name="att1">Добавляет точку к треку</string>
+
+    <string name="edit">Изменить</string>
+    <string name="edit1">Изменить параметры точки</string>
+
+    <!-- Dialogs -->
+    <string name = "selectcat">Выбрать категорию</string>
+    <string name = "namehint">Название</string>
+    <string name = "deschint">Описание</string>
+    <string name = "urlhint">URL</string>
+    <string name = "addnewtrack">Добавить новый трек</string>
+
+    <string name = "follow">Следовать</string>
+    <string name = "unfollow">Не следовать</string>
+
+    <string name = "welcommes">Добро пожаловать в Мои Путешествия</string>
+    <string name = "jumpto">Перенести карту к вашему местоположению</string>
+    <string name = "dontshowagain">Не показывать больше это окно</string>
+
+
+</resources>

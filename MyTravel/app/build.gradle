@@ -5,11 +5,11 @@ android {
     buildToolsVersion '20'
 
     defaultConfig {
-        applicationId 'org.fruct.oss.mytravel'
+        applicationId 'org.fruct.oss.mytrips'
         minSdkVersion 10
         targetSdkVersion 20
-        versionCode 7
-        versionName '0.0.7'
+        versionCode 1
+        versionName '0.1'
     }
 
     sourceSets {

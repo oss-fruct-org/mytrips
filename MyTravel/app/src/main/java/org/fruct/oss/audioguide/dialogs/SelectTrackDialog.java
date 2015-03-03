@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
+import org.fruct.oss.audioguide.R;
 import org.fruct.oss.audioguide.adapters.TrackCursorAdapter;
 import org.fruct.oss.audioguide.track.CursorHolder;
 import org.fruct.oss.audioguide.track.CursorReceiver;
@@ -64,7 +65,7 @@ public class SelectTrackDialog extends DialogFragment implements DialogInterface
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 		builder.setAdapter(adapter, this);
-        builder.setPositiveButton("Add new track", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getResources().getString(R.string.addnewtrack), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(newTrackListener!=null)

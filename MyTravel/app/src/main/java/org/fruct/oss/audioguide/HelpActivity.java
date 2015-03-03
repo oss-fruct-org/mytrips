@@ -67,33 +67,31 @@ public class HelpActivity extends ActionBarActivity {
         @Override
         public Fragment getItem(int position) {
 			HelpEntry[] helpEntries1 = {
-				new HelpEntry("Sound", "Use this button to start sound automatically", R.drawable.ic_action_volume_on, true),
-				new HelpEntry("Refresh", "Press to refresh list of tracks or points", R.drawable.ic_action_refresh, true),
-				new HelpEntry("Filter", "Use \"Filter\" to show tracks or points from selected categories", 0, true)
+				new HelpEntry(getResources().getString(R.string.refresh), getResources().getString(R.string.refresh1), R.drawable.ic_action_refresh, true),
+				new HelpEntry(getResources().getString(R.string.filter), getResources().getString(R.string.filter1), 0, true)
 			};
 
 			HelpEntry[] helpEntries2 = {
-					new HelpEntry("Tracks", "Press \"Add\" button to create track", R.drawable.ic_action_new, true),
-					new HelpEntry("Track menu", "Long press to show track's menu", R.drawable.ic_action_refresh, true),
-					new HelpEntry("Activate", "Show track on map hiding unrelated points", R.drawable.ic_action_location_found, true),
-					new HelpEntry("Save", "Save content of track to your device", R.drawable.ic_action_save, false),
-					new HelpEntry("Delete", "Delete track. AudioGuide will ask you delete track locally or on remote server", R.drawable.ic_action_discard, true)
+					new HelpEntry(getResources().getString(R.string.tracks), getResources().getString(R.string.tracks1), R.drawable.ic_action_new, true),
+					new HelpEntry(getResources().getString(R.string.refresh), getResources().getString(R.string.refresh2), R.drawable.ic_action_refresh, true),
+					new HelpEntry(getResources().getString(R.string.activate), getResources().getString(R.string.activate1), R.drawable.ic_action_location_found, true),
+					new HelpEntry(getResources().getString(R.string.save), getResources().getString(R.string.save1), R.drawable.ic_action_save, false),
+					new HelpEntry(getResources().getString(R.string.delete), getResources().getString(R.string.delete1), R.drawable.ic_action_discard, true)
 			};
 
 			HelpEntry[] helpEntries3 = {
-					new HelpEntry("Modes", "Map has two modes: track and points", 0, true),
-					new HelpEntry("Track mode", "In track mode map shows only active track. Track mode can be switched from menu or from track window by selecting \"Activate\" option from track's menu. " +
-							"Track mode can be deactivated by choosing menu button", android.R.drawable.ic_menu_mapmode, true),
-					new HelpEntry("Point mode", "Show all loaded points", android.R.drawable.ic_menu_mapmode, true),
-					new HelpEntry("Search", "Search near points. Searching radius can be adjusted in settings window", R.drawable.ic_action_search, true),
-					new HelpEntry("Place here", "Set position to current map center", 0, true),
-					new HelpEntry("Add point", "Create new point", R.drawable.ic_action_new, true)
+					new HelpEntry(getResources().getString(R.string.modes), getResources().getString(R.string.modes1), 0, true),
+					new HelpEntry(getResources().getString(R.string.stm), getResources().getString(R.string.stm1), R.drawable.ic_routing, true),
+					new HelpEntry(getResources().getString(R.string.atm), getResources().getString(R.string.atm1), R.drawable.ic_routing, true),
+					new HelpEntry(getResources().getString(R.string.search), getResources().getString(R.string.search1), R.drawable.ic_action_search, true),
+					new HelpEntry(getResources().getString(R.string.place), getResources().getString(R.string.place1), 0, true),
+					new HelpEntry(getResources().getString(R.string.addpoint), getResources().getString(R.string.addpoint1), R.drawable.ic_action_new, true)
 			};
 
 			HelpEntry[] helpEntries4 = {
-					new HelpEntry("Point menu", "Long press point to access point menu", 0, true),
-					new HelpEntry("Add to track", "Add point to track", R.drawable.ic_action_share, true),
-					new HelpEntry("Edit", "Edit point description, image and audio", R.drawable.ic_action_edit, true),
+					new HelpEntry(getResources().getString(R.string.pointmenu), getResources().getString(R.string.pointmenu1), 0, true),
+					new HelpEntry(getResources().getString(R.string.att), getResources().getString(R.string.att1), R.drawable.ic_action_share, true),
+					new HelpEntry(getResources().getString(R.string.edit), getResources().getString(R.string.edit1), R.drawable.ic_action_edit, true),
 			};
 
 			switch (position) {
@@ -129,7 +127,10 @@ public class HelpActivity extends ActionBarActivity {
             }
             return null;
         }
+
     }
+
+
 
 	/**
 	 * A placeholder fragment containing a simple view.

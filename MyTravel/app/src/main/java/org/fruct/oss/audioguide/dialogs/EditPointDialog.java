@@ -103,7 +103,7 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 		TrackManager trackManager = DefaultTrackManager.getInstance();
 		categories = trackManager.getCategories();
         trackNames = trackManager.getTrackNames();
-        trackNames.add(0, "None");
+        trackNames.add(0, "--");
 	}
 
 	@Override

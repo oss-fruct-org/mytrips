@@ -4,26 +4,26 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_add"
           android:icon="@drawable/ic_action_new"
-          android:title="Add point"
+          android:title="@string/addpoint"
           app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_search"
           android:icon="@drawable/ic_action_search"
-          android:title="Search"
+          android:title="@string/search"
           app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_place"
           android:icon="@drawable/ic_action_accept"
-          android:title="Place here"
+          android:title="@string/place"
           app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_find_me"
           android:icon="@drawable/ic_action_location_found"
-          android:title="Find me"
+          android:title="@string/activate"
           app:showAsAction="always" />
 
     <item android:id="@+id/action_stop_guide"
           android:icon="@drawable/ic_routing"
-          android:title="Stop track mode"
+          android:title="@string/modes"
           app:showAsAction="always" />
 </menu>

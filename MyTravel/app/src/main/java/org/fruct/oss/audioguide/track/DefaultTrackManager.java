@@ -119,11 +119,11 @@ public class DefaultTrackManager implements TrackManager, Closeable {
 
 					if (point.getCategoryId() == -1)
 						point.setCategoryId(track.getCategoryId());
-
+/*
 					if (point.hasAudio()) {
 						fileManager.insertRemoteFile("no-title", Uri.parse(point.getAudioUrl()));
 						fileManager.requestAudioDownload(point.getAudioUrl());
-					}
+					}*/
 				}
 
 				database.insertPointsToTrack(track, points);
@@ -139,8 +139,9 @@ public class DefaultTrackManager implements TrackManager, Closeable {
 			@Override
 			public void call(List<Track> tracks) {
 				for (Track track : tracks) {
-					track.setLocal(false);
+					//track.setLocal(false);
 					database.insertTrack(track);
+                    storeTrackLocal(track);
 				}
 
 				notifyDataChanged();

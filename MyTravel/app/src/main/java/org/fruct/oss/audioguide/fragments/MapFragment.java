@@ -22,18 +22,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import org.fruct.oss.audioguide.MultiPanel;
@@ -52,6 +48,7 @@ import org.fruct.oss.audioguide.track.Point;
 import org.fruct.oss.audioguide.track.Track;
 import org.fruct.oss.audioguide.track.TrackManager;
 import org.fruct.oss.audioguide.track.TrackingService;
+import org.fruct.oss.mytravel.IntroDialog;
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.util.ResourceProxyImpl;
@@ -98,6 +95,7 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 	private Point selectedPoint;
 
 	private List<EditOverlay> trackOverlays = new ArrayList<EditOverlay>();
+    public static final GeoPoint PTZ = new GeoPoint(61.783333, 34.350000);
 
 	/**
 	 * Use this factory method to create a new instance of
@@ -122,6 +120,8 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 
 		pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		pref.registerOnSharedPreferenceChangeListener(this);
+
+        checkNetworkAvailable();
 	}
 
 	@Override
@@ -199,7 +199,9 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 		if (trackingService != null) {
 			IGeoPoint mapCenter = mapView.getMapCenter();
 			trackingService.mockLocation(mapCenter.getLatitude(), mapCenter.getLongitude());
-		}
+		}else {
+            log.error("MockingFailed: tracking service == null");
+        }
 	}
 
 	@Override
@@ -247,6 +249,8 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 		});
 
 
+
+
 		return view;
 	}
 
@@ -287,7 +291,6 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 						.commit();
 			}
 		}, new IntentFilter(TrackingService.BC_ACTION_POINT_IN_RANGE)); */
-
 	}
 
 	@Override
@@ -514,11 +517,35 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 		}
 	}
 
+    private void checkNetworkAvailable() {
+
+            SharedPreferences pref = PreferenceManager
+                    .getDefaultSharedPreferences(getActivity());
+
+            if (!pref.getBoolean(SettingsActivity.PREF_INTRO_DISABLED, false)) {
+                IntroDialog dialog = new IntroDialog() {
+                    @Override
+                    protected void onAccept() {
+
+                    }
+                };
+                dialog.setParams(R.string.app_name,
+                        R.string.action_settings,
+                        SettingsActivity.PREF_INTRO_DISABLED);
+                dialog.show(getFragmentManager(), "network-dialog");
+            } else {
+
+            }
+
+    }
+
 	private class TrackingServiceConnection implements ServiceConnection {
 		@Override
 		public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
 			trackingService = ((TrackingService.TrackingServiceBinder) iBinder).getService();
 			trackingService.sendLastLocation();
+            if(myPositionOverlay!= null && myPositionOverlay.getLocation() == null)
+                mockLocation();
 		}
 
 		@Override
@@ -553,7 +580,7 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 
 			point.setPrivate(true);
 			trackManager.insertPoint(point);
-            if(!track.equalsIgnoreCase("none")){
+            if(!track.equalsIgnoreCase("--")){
                 Track t = trackManager.getTrackByHName(track);
                 if(t!= null) {
                     trackManager.insertToTrack(t, point, -1);

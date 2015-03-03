@@ -28,6 +28,7 @@ import org.fruct.oss.audioguide.fragments.GetsFragment;
 import org.fruct.oss.audioguide.fragments.MapFragment;
 import org.fruct.oss.audioguide.fragments.PanelFragment;
 import org.fruct.oss.audioguide.fragments.TrackFragment;
+import org.fruct.oss.audioguide.preferences.ConfigFragment;
 import org.fruct.oss.audioguide.preferences.SettingsActivity;
 import org.fruct.oss.audioguide.track.AudioPlayer;
 import org.fruct.oss.audioguide.track.Point;
@@ -156,7 +157,7 @@ public class MainActivity extends ActionBarActivity
 			fragment = MapFragment.newInstance();
 			break;
 		case 2:
-			fragment = GetsFragment.newInstance();
+			fragment = ConfigFragment.newInstance();
 			break;
 		case 3:
 			fragment = AboutFragment.newInstance();

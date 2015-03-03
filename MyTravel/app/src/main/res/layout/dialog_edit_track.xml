@@ -6,7 +6,7 @@
               android:layout_height="match_parent">
 
     <EditText
-        android:hint="Name"
+        android:hint="@string/namehint"
 
         android:id="@+id/edit_name"
         android:inputType="text"
@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"/>
 
     <EditText
-        android:hint="Description"
+        android:hint="@string/deschint"
 
         android:inputType="text"
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         android:id="@+id/edit_description"/>
 
     <EditText
-        android:hint="URL"
+        android:hint="@string/urlhint"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +46,6 @@
             android:id="@+id/category_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select category"/>
+            android:text="@string/selectcat"/>
     </RelativeLayout>
 </LinearLayout>

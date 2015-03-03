@@ -43,12 +43,13 @@ public class GetsFragment extends Fragment implements WebViewDialog.Listener, Sh
 	public GetsFragment() {
 	}
 
-	private void logout() {
-		pref.edit().remove(GetsBackend.PREF_AUTH_TOKEN).apply();
-		initializeLoginLabel();
-	}
+    private void logout() {
+        pref.edit().remove(GetsBackend.PREF_AUTH_TOKEN).apply();
+        initializeLoginLabel();
+    }
 
-	@Override
+
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_gets, container, false);

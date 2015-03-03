@@ -42,4 +42,74 @@
 
     <string name="title_activity_help">HelpActivity</string>
 
+    <!-- Preferences strings -->
+    <string name = "gets_not_logged">Not logged in</string>
+    <string name = "gets_logged">Logged in</string>
+    <string name = "loggin_button">Login</string>
+    <string name = "logout_button">Logout</string>
+    <string name = "gets_autho">GeTS Authorization</string>
+
+    <string name = "setloadrad">Load radius</string>
+    <string name = "setpointrange">Point range</string>
+
+    <string name = "about_string">This application is a part of grant KA332 of Karelia ENPI CBC programme, which is co-funded by the European Union, the Russian Federation and the Republic of Finland. \n\nVersion: 0.1 </string>
+
+    <!-- Help -->
+
+    <string name="refresh">Refresh</string>
+    <string name="filter">Filter</string>
+    <string name="refresh1">Press to refresh list of tracks or points</string>
+    <string name="filter1">Use "Filter" to show tracks or points from selected categories</string>
+
+    <string name="tracks1">Press "Add" button to create track</string>
+    <string name="tracks">Tracks</string>
+    <string name="refresh2">Refresh track list</string>
+
+    <string name="activate">Activate</string>
+    <string name="save">Save</string>
+    <string name="activate1">Show track on map hiding unrelated points</string>
+    <string name="save1">Save content of track to your device</string>
+
+    <string name="delete">Delete</string>
+    <string name="delete1">Delete track. Application will ask you delete track locally or on remote server</string>
+    <string name="modes">Modes</string>
+    <string name="modes1">Map has two modes: single track and all tracks</string>
+    <string name="stm">Single track mode</string>
+    <string name="stm1">In single track mode map shows only active track.</string>
+    <string name="atm">All tracks mode</string>
+    <string name="atm1">Show all loaded points and tracks</string>
+
+    <string name="search">Search</string>
+    <string name="search1">Search near points. Searching radius can be adjusted in settings window</string>
+    <string name="place">Place here</string>
+    <string name="place1">Set position to current map center</string>
+
+    <string name="addpoint">Add point</string>
+    <string name="addpoint1">Create new point</string>
+
+    <string name="pointmenu">Point menu</string>
+    <string name="pointmenu1">Long press point to access point menu</string>
+    <string name="att">Add to track</string>
+    <string name="att1">Add point to track</string>
+
+    <string name="edit">Edit</string>
+    <string name="edit1">Edit point description, image and audio</string>
+
+
+    <!-- Dialogs -->
+    <string name = "selectcat">Select category</string>
+    <string name = "namehint">Name</string>
+    <string name = "deschint">Description</string>
+    <string name = "urlhint">URL</string>
+    <string name = "addnewtrack">Add new track</string>
+
+
+    <string name = "follow">Follow</string>
+    <string name = "unfollow">Unfollow</string>
+
+    <string name = "welcommes">Welcome to My Trips</string>
+    <string name = "jumpto">Jumps to your location</string>
+    <string name = "dontshowagain"> Dont show this dialog again</string>
+
+
 </resources>

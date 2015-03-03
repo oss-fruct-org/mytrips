@@ -18,7 +18,6 @@ import org.fruct.oss.audioguide.R;
 import org.fruct.oss.audioguide.track.DefaultTrackManager;
 import org.fruct.oss.audioguide.track.Track;
 import org.fruct.oss.audioguide.track.TrackManager;
-import org.fruct.oss.mytravel.TrackRecorder;
 
 public class TrackCursorAdapter extends CursorAdapter implements View.OnClickListener {
 	public TrackCursorAdapter(Context context) {

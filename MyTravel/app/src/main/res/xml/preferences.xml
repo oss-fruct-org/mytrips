@@ -7,6 +7,7 @@
         android:text="@plurals/pref_seek_bar_summary"
         android:key="pref_range"
         android:max="1000"
+        android:icon="@drawable/abc_ic_search"
         android:defaultValue="50"/>
 
     <CheckBoxPreference
@@ -25,4 +26,8 @@
         android:defaultValue="1000"
         exponential="true"
         />
+    <Preference
+        android:title="Custom Preference"
+        android:summary="This works almost like a button"
+        android:key="pref_gets" />
 </PreferenceScreen>

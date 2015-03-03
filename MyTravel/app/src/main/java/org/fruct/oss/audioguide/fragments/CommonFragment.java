@@ -168,10 +168,10 @@ public class CommonFragment extends Fragment {
 	private void updateMenuIcon(boolean isWatchActive) {
 		if (navigateAction != null) {
 			if (isWatchActive) {
-				navigateAction.setTitle("Unfollow");
+				navigateAction.setTitle(getResources().getString(R.string.unfollow));
 				navigateAction.setIcon(R.drawable.ic_action_inv_stop);
 			} else {
-				navigateAction.setTitle("Follow");
+				navigateAction.setTitle(getResources().getString(R.string.follow));
 				navigateAction.setIcon(R.drawable.ic_action_inv_play);
 			}
 		}

@@ -1,5 +1,6 @@
 package org.fruct.oss.audioguide.util;
 
+import android.os.Build;
 import android.util.Pair;
 import android.util.TypedValue;
 
@@ -76,7 +77,15 @@ public class Utils {
 		void call(T t);
 	}
 
-	public static float normalizeAngle(float degree) {
+    public static int getDialogTheme() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            return android.R.style.Theme_Dialog;
+        } else {
+            return android.R.style.Theme_Holo_Light_Dialog;
+        }
+    }
+
+    public static float normalizeAngle(float degree) {
 		return (float) (StrictMath.IEEEremainder(degree, 360));
 	}
 

@@ -54,6 +54,7 @@ public class TrackFragment extends ListFragment implements PopupMenu.OnMenuItemC
 	private TrackCursorAdapter trackCursorAdapter;
 	private CursorHolder cursorHolder;
 
+    //add new track
 	private MenuItem popupShowPoints;
 	private MenuItem popupItemEdit;
 	private MenuItem popupItemEditPoints;
