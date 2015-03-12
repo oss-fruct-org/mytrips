@@ -3,6 +3,7 @@ package org.fruct.oss.audioguide.track;
 import android.location.Location;
 
 import org.fruct.oss.audioguide.gets.Category;
+import org.fruct.oss.audioguide.util.Utils;
 
 import java.io.Closeable;
 import java.util.List;
@@ -15,6 +16,8 @@ public interface TrackManager extends Closeable {
 	void insertTrack(Track track);
 
 	void insertToTrack(Track track, Point point, int selectedPosition);
+
+    void insertToTrack(Track track, Point point);
 
 	void storeTrackLocal(Track track);
 
@@ -65,4 +68,11 @@ public interface TrackManager extends Closeable {
     public void editPosition(Track track, Point point, int position, int prevPosition);
 
     public List<String> getTrackNames();
+
+    public void publishTrack(Track track);
+
+    public void unpublishTrack(Track track);
+
+    public void getUserInfo(final Utils.UserInfoCallback<String, String> callback);
+
 }

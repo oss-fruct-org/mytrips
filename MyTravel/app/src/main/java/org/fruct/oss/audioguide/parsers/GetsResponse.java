@@ -58,6 +58,13 @@ public class GetsResponse {
 			}
 		});
 
+        contentParsers.put(UserInfoParser.class, new ContentParser() {
+            @Override
+            public IContent parse(XmlPullParser parser) throws IOException, XmlPullParserException {
+                return UserInfoParser.parse(parser);
+            }
+        });
+
 		contentParsers.put(TokenContent.class, new ContentParser() {
 			@Override
 			public IContent parse(XmlPullParser parser) throws IOException, XmlPullParserException {

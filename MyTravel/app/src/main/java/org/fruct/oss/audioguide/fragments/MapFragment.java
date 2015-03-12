@@ -19,10 +19,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.view.ActionMode;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -78,6 +78,8 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 	private final static String PREF_ZOOM = "pref-zoom";
 	public static final String ARG_POINT = "point";
 
+    public static boolean introShown = false;
+
 	private MapView mapView;
 	private TrackManager trackManager;
 	private TrackingService trackingService;
@@ -121,7 +123,7 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 		pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		pref.registerOnSharedPreferenceChangeListener(this);
 
-        checkNetworkAvailable();
+        showIntroDialog();
 	}
 
 	@Override
@@ -153,14 +155,14 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 
 				mapView.getController().animateTo(newMapCenter);
 			}else{
-                Toast.makeText(getActivity(), "Position is not set yet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.position_not_set), Toast.LENGTH_SHORT).show();
             }
 			break;
 		case R.id.action_search:
             if(myPositionOverlay != null && myPositionOverlay.getLocation() != null) {
                 startSearchingPoints();
             }else{
-                Toast.makeText(getActivity(), "Position is not set yet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.position_not_set), Toast.LENGTH_SHORT).show();
             }
 			break;
 		case R.id.action_stop_guide:
@@ -182,11 +184,12 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 	}
 
 	private void startSearchingPoints() {
-		Toast.makeText(getActivity(), "Searching near points...", Toast.LENGTH_LONG).show();
+		Toast.makeText(getActivity(), getResources().getString(R.string.searching_points), Toast.LENGTH_LONG).show();
 
 		trackManager.requestPointsInRadius((float) myPositionOverlay.getLocation().getLatitude(),
 				(float) myPositionOverlay.getLocation().getLongitude(),
 				true);
+        trackManager.requestTracksInRadius();
 	}
 
 	private void startAddingPoint() {
@@ -435,12 +438,12 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 			activeTrack = trackManager.getTrackByName(activeTrackName);
 
 		if (activeTrack != null) {
-			Toast.makeText(getActivity(), "Single track mode", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), getResources().getString(R.string.stm), Toast.LENGTH_LONG).show();
 			activePoints = trackManager.loadPoints(activeTrack);
 			relations = trackManager.loadRelations();
 			// TODO: there are no need to use relations
 		} else {
-			Toast.makeText(getActivity(), "All tracks mode", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), getResources().getString(R.string.atm), Toast.LENGTH_LONG).show();
 			activePoints = trackManager.loadLocalPoints();
             relations = trackManager.loadRelations();
 		}
@@ -517,12 +520,13 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 		}
 	}
 
-    private void checkNetworkAvailable() {
+    private void showIntroDialog() {
 
             SharedPreferences pref = PreferenceManager
                     .getDefaultSharedPreferences(getActivity());
 
-            if (!pref.getBoolean(SettingsActivity.PREF_INTRO_DISABLED, false)) {
+            if (!pref.getBoolean(SettingsActivity.PREF_INTRO_DISABLED, false)
+                    && !introShown) {
                 IntroDialog dialog = new IntroDialog() {
                     @Override
                     protected void onAccept() {
@@ -532,9 +536,8 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
                 dialog.setParams(R.string.app_name,
                         R.string.action_settings,
                         SettingsActivity.PREF_INTRO_DISABLED);
-                dialog.show(getFragmentManager(), "network-dialog");
-            } else {
-
+                introShown = true;
+                dialog.show(getFragmentManager(), "intro-dialog");
             }
 
     }
@@ -580,10 +583,10 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 
 			point.setPrivate(true);
 			trackManager.insertPoint(point);
-            if(!track.equalsIgnoreCase("--")){
+            if(!track.equalsIgnoreCase(getResources().getString(R.string.pd_no_track))){
                 Track t = trackManager.getTrackByHName(track);
                 if(t!= null) {
-                    trackManager.insertToTrack(t, point, -1);
+                    trackManager.insertToTrack(t, point);
                 }else{
                     log.error("t = null in map fr");
                 }

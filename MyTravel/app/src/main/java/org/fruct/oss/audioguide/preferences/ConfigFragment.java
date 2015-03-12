@@ -26,7 +26,9 @@ import org.fruct.oss.audioguide.gets.LoginStage1Request;
 import org.fruct.oss.audioguide.gets.LoginStage2Request;
 import org.fruct.oss.audioguide.parsers.AuthRedirectResponse;
 import org.fruct.oss.audioguide.parsers.GetsResponse;
+import org.fruct.oss.audioguide.track.DefaultTrackManager;
 import org.fruct.oss.audioguide.track.GetsBackend;
+import org.fruct.oss.audioguide.util.Utils;
 import org.fruct.oss.mytravel.RangePickerDialog;
 
 
@@ -48,6 +50,13 @@ public class ConfigFragment extends Fragment implements WebViewDialog.Listener, 
     LinearLayout rangeLayout, radiusLayout;
     int range, radius;
     RangePickerDialog rpDialog;
+
+    public final static String NOTSET = "notset";
+    public final static String PREF_EMAIL = "saved_email";
+    public final static String PREF_IS_TRUSTED = "saved_is_trusted";
+
+    private static String email = NOTSET;
+    private static Boolean isTrusted = false;
 
     public static ConfigFragment newInstance(){return new ConfigFragment();}
     public ConfigFragment(){}
@@ -90,6 +99,7 @@ public class ConfigFragment extends Fragment implements WebViewDialog.Listener, 
                 logout();
             }
         });
+        retrieveStatus();
         updateTexts();
 
         rangeLayout.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +138,12 @@ public class ConfigFragment extends Fragment implements WebViewDialog.Listener, 
             signInButton.setVisibility(View.VISIBLE);
         } else {
             getsStatusText.setText(getResources().getString(R.string.gets_logged));
+            if(!email.equals(NOTSET))
+                getsStatusText.setText(getResources().getString(R.string.gets_logged) + ": " +email);
+            else
+                getsStatusText.setText(getResources().getString(R.string.gets_logged));
+            if(isTrusted)
+                getsStatusText.setText(getsStatusText.getText() + " (" + getResources().getString(R.string.is_trusted_user) +")");
             signInButton.setVisibility(View.GONE);
             logoutButton.setVisibility(View.VISIBLE);
         }
@@ -215,6 +231,17 @@ public class ConfigFragment extends Fragment implements WebViewDialog.Listener, 
                 showError("Error login");
             }
         });
+
+        DefaultTrackManager.getInstance().getUserInfo(new Utils.UserInfoCallback<String, String>() {
+            @Override
+            public void call(String mail, String trusted) {
+                email = mail;
+                isTrusted = Boolean.parseBoolean(trusted);
+                saveStatus();
+                updateTexts();
+            }
+        });
+        updateTexts();
     }
 
     private void showError(final String error) {
@@ -230,5 +257,25 @@ public class ConfigFragment extends Fragment implements WebViewDialog.Listener, 
     public void valueSelected(int value) {
         pref.edit().putInt(currentlyEdited, value).apply();
         updateTexts();
+    }
+
+    private void saveStatus(){
+        String token = pref.getString(GetsBackend.PREF_AUTH_TOKEN, null);
+        if(token == null)
+            return;
+
+        if(!email.equals(NOTSET))
+            pref.edit().putString(PREF_EMAIL,email).apply();
+
+        pref.edit().putBoolean(PREF_IS_TRUSTED,isTrusted).apply();
+    }
+
+    private void retrieveStatus(){
+        String token = pref.getString(GetsBackend.PREF_AUTH_TOKEN, null);
+        if(token == null)
+            return;
+
+        email = pref.getString(PREF_EMAIL, NOTSET);
+        isTrusted = pref.getBoolean(PREF_IS_TRUSTED, false);
     }
 }

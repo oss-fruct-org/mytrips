@@ -15,6 +15,8 @@ public class Track implements Parcelable, Comparable<Track> {
 	private boolean isLocal;
 	private boolean isActive;
 	private boolean isPrivate;
+    private boolean isPublished;
+
 
 	private long localId;
 	private long categoryId = -1;
@@ -198,4 +200,12 @@ public class Track implements Parcelable, Comparable<Track> {
 	public int compareTo(Track track) {
 		return this.getName().compareTo(track.getName());
 	}
+
+    public boolean isPublished() {
+        return isPublished;
+    }
+
+    public void setPublished(boolean isPublished) {
+        this.isPublished = isPublished;
+    }
 }

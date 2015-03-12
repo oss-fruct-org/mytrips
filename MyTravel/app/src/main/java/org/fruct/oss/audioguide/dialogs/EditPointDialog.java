@@ -103,7 +103,7 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 		TrackManager trackManager = DefaultTrackManager.getInstance();
 		categories = trackManager.getCategories();
         trackNames = trackManager.getTrackNames();
-        trackNames.add(0, "--");
+        trackNames.add(0, getResources().getString(R.string.pd_no_track));
 	}
 
 	@Override
@@ -228,7 +228,7 @@ public class EditPointDialog extends DialogFragment implements DialogInterface.O
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                selectedTrack = "None";
+                selectedTrack = getResources().getString(R.string.pd_no_track);
             }
         });
     }

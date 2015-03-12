@@ -88,8 +88,8 @@ public class SelectTrackDialog extends DialogFragment implements DialogInterface
 	@Override
 	public Cursor swapCursor(Cursor cursor) {
 		if (cursor.getCount() == 0) {
-			getFragmentManager().popBackStack("select-track-dialog", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-			Toast.makeText(getActivity(), "No tracks to activate", Toast.LENGTH_SHORT).show();
+			//getFragmentManager().popBackStack("select-track-dialog", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+			Toast.makeText(getActivity(), getResources().getString(R.string.no_tracks_to_show), Toast.LENGTH_SHORT).show();
 		}
 
 		if (adapter != null) {

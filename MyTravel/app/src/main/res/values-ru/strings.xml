@@ -95,6 +95,9 @@
     <string name="edit">Изменить</string>
     <string name="edit1">Изменить параметры точки</string>
 
+    <string name = "publish">Опубликованные треки можно сделать приватными кнопкой "Сделать приватным"</string>
+    <string name = "unpublish">Убрать трек из публичного доступа</string>
+
     <!-- Dialogs -->
     <string name = "selectcat">Выбрать категорию</string>
     <string name = "namehint">Название</string>
@@ -109,5 +112,16 @@
     <string name = "jumpto">Перенести карту к вашему местоположению</string>
     <string name = "dontshowagain">Не показывать больше это окно</string>
 
+    <string name = "pd_no_track">Нет трека</string>
+
+    <string name = "is_trusted_user">Доверенный пользователь</string>
+
+    <string name = "publish_track">Опубликовать</string>
+    <string name = "unpublish_track">Сделать приватным</string>
+    <string name = "searching_points">Поиск ближайших точек</string>
+    <string name = "record_track">Запоминать посещенные точки</string>
+
+    <string name = "position_not_set">Местоположение еще не установлена</string>
+    <string name = "no_tracks_to_show">Загруженных треков нет</string>
 
 </resources>

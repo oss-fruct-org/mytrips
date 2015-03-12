@@ -20,4 +20,10 @@ public interface StorageBackend {
 	void loadPointsInTrack(Track track, Utils.Callback<List<Point>> callback);
 
 	void deleteTrack(Track track, Utils.Callback<Track> callback);
+
+    void publishTrack(Track track);
+
+    void unpublishTrack(Track track);
+
+    void getUserInfo(Utils.UserInfoCallback<String, String> callback);
 }

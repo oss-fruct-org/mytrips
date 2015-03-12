@@ -11,12 +11,16 @@ import org.fruct.oss.audioguide.gets.Gets;
 import org.fruct.oss.audioguide.gets.LoadPointsRequest;
 import org.fruct.oss.audioguide.gets.LoadTrackRequest;
 import org.fruct.oss.audioguide.gets.LoadTracksRequest;
+import org.fruct.oss.audioguide.gets.PublishTrackRequest;
+import org.fruct.oss.audioguide.gets.UnpublishTrackRequest;
 import org.fruct.oss.audioguide.gets.UpdatePointRequest;
+import org.fruct.oss.audioguide.gets.UserInfoRequest;
 import org.fruct.oss.audioguide.parsers.CategoriesContent;
 import org.fruct.oss.audioguide.parsers.GetsException;
 import org.fruct.oss.audioguide.parsers.GetsResponse;
 import org.fruct.oss.audioguide.parsers.Kml;
 import org.fruct.oss.audioguide.parsers.TracksContent;
+import org.fruct.oss.audioguide.parsers.UserInfoParser;
 import org.fruct.oss.audioguide.util.Utils;
 
 import java.util.ArrayList;
@@ -36,6 +40,9 @@ public class GetsBackend implements StorageBackend, CategoriesBackend {
 
 	private List<Category> categories;
 	private CountDownLatch updateTrackLatch;
+
+    private String email;
+    private boolean isTrusted;
 
 	GetsBackend() {
 		this.gets = Gets.getInstance();
@@ -292,7 +299,61 @@ public class GetsBackend implements StorageBackend, CategoriesBackend {
 		});
 	}
 
-	private static class UpdateRequest {
+    @Override
+    public void publishTrack(Track track){
+        Gets gets = Gets.getInstance();
+        gets.addRequest(new PublishTrackRequest(gets, track){
+            @Override
+            protected void onPostProcess(GetsResponse responce){
+                if(responce.getCode()!= 0){
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void unpublishTrack(Track track) {
+        Gets gets = Gets.getInstance();
+        gets.addRequest(new UnpublishTrackRequest(gets, track){
+            @Override
+            protected void onPostProcess(GetsResponse responce){
+                if(responce.getCode()!= 0){
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getUserInfo(final Utils.UserInfoCallback<String, String> callback) {
+        Gets gets = Gets.getInstance();
+        gets.addRequest(new UserInfoRequest(gets){
+            @Override
+            protected void onPostProcess(GetsResponse response){
+                super.onPostProcess(response);
+
+                if (response.getCode() != 0) {
+                    return;
+                }
+
+                UserInfoParser info = ((UserInfoParser) response.getContent());
+                if(info == null){
+                    callback.call("notset", "false");
+                    return;
+                }
+                isTrusted = info.getTrusted();
+                email = info.getEmail();
+
+                callback.call(email, isTrusted+"");
+            }
+        });
+    }
+
+
+
+
+    private static class UpdateRequest {
 		boolean isSuccess = true;
 		int pointsRemaining;
 		final CountDownLatch latch;

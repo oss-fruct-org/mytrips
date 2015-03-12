@@ -76,7 +76,10 @@ public class HelpActivity extends ActionBarActivity {
 					new HelpEntry(getResources().getString(R.string.refresh), getResources().getString(R.string.refresh2), R.drawable.ic_action_refresh, true),
 					new HelpEntry(getResources().getString(R.string.activate), getResources().getString(R.string.activate1), R.drawable.ic_action_location_found, true),
 					new HelpEntry(getResources().getString(R.string.save), getResources().getString(R.string.save1), R.drawable.ic_action_save, false),
-					new HelpEntry(getResources().getString(R.string.delete), getResources().getString(R.string.delete1), R.drawable.ic_action_discard, true)
+					new HelpEntry(getResources().getString(R.string.delete), getResources().getString(R.string.delete1), R.drawable.ic_action_discard, true),
+                    new HelpEntry(getResources().getString(R.string.publish_track), getResources().getString(R.string.publish), R.drawable.ic_action_publish_icon, true),
+                    new HelpEntry(getResources().getString(R.string.unpublish_track), getResources().getString(R.string.unpublish), R.drawable.ic_action_unpublish_icon, true)
+
 			};
 
 			HelpEntry[] helpEntries3 = {

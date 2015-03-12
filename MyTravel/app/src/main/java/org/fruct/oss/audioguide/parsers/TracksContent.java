@@ -56,6 +56,7 @@ public class TracksContent implements IContent {
 		String url = "";
 		String hname = null;
 		String access = "r";
+        String published = "false";
 		long categoryId = -1;
 
 		while (parser.next() != XmlPullParser.END_TAG) {
@@ -71,6 +72,8 @@ public class TracksContent implements IContent {
 				hname = GetsResponse.readText(parser);
 			} else if (tagName.equals("name")) {
 				name = GetsResponse.readText(parser);
+            } else if (tagName.equals("published")) {
+                published = GetsResponse.readText(parser);
 			} else if (tagName.equals("description")) {
 				description = GetsResponse.readText(parser);
 			} else {
@@ -83,6 +86,7 @@ public class TracksContent implements IContent {
 		track.setHname(hname);
 		track.setPrivate(access.equals("rw"));
 		track.setCategoryId(categoryId);
+        track.setPublished(Boolean.parseBoolean(published));
 		return track;
 	}
 }

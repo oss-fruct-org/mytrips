@@ -92,6 +92,13 @@ public class DefaultTrackManager implements TrackManager, Closeable {
 		notifyDataChanged();
 	}
 
+    @Override
+    public void insertToTrack(Track track, Point point) {
+        database.insertToTrack(track, point);
+        database.markTrackUpdate(track);
+        notifyDataChanged();
+    }
+
     public void removeFromTrack(Track track, Point point, int position){
         database.removeFromTrack(track, point, position);
         database.markTrackUpdate(track);
@@ -224,6 +231,7 @@ public class DefaultTrackManager implements TrackManager, Closeable {
 		return cursorHolder;
 	}
 
+
 	@Override
 	public CursorHolder loadPrivateTracks() {
 		CursorHolder cursorHolder = new CursorHolder() {
@@ -294,6 +302,23 @@ public class DefaultTrackManager implements TrackManager, Closeable {
 		cursorHolder.queryAsync();
 		return cursorHolder;
 	}
+
+    public void publishTrack(Track track){
+        backend.publishTrack(track);
+    }
+
+    public void unpublishTrack(Track track){
+        backend.unpublishTrack(track);
+    }
+
+    public void getUserInfo(final Utils.UserInfoCallback<String, String> callback){
+        backend.getUserInfo(new Utils.UserInfoCallback<String, String>() {
+            @Override
+            public void call(String a, String b) {
+                callback.call(a,b);
+            }
+            });
+    }
 
 	@Override
 	public Track getTrackByName(String name) {
@@ -386,6 +411,7 @@ public class DefaultTrackManager implements TrackManager, Closeable {
 
 		reQueryCursorHolders();
 	}
+
 
 	private CursorHolder addCursorHolder(CursorHolder cursorHolder) {
 		cursorHolders.add(cursorHolder);

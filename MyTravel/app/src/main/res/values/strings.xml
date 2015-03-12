@@ -95,6 +95,8 @@
     <string name="edit">Edit</string>
     <string name="edit1">Edit point description, image and audio</string>
 
+    <string name = "publish">Published tracks can be made private again with "Unpublish" button.</string>
+    <string name = "unpublish">Remove track from public access</string>
 
     <!-- Dialogs -->
     <string name = "selectcat">Select category</string>
@@ -111,5 +113,19 @@
     <string name = "jumpto">Jumps to your location</string>
     <string name = "dontshowagain"> Dont show this dialog again</string>
 
+    <string name = "pd_no_track">No track</string>
+
+    <string name = "is_trusted_user">Trusted user</string>
+
+    <string name = "publish_track">Publish</string>
+    <string name = "unpublish_track">Unpublish</string>
+
+    <string name = "searching_points">Searching for near points</string>
+
+    <string name = "record_track">Record visited points</string>
+
+    <string name = "position_not_set">Location is not set yet</string>
+
+    <string name = "no_tracks_to_show">No tracks to activate</string>
 
 </resources>

@@ -175,6 +175,11 @@ public class Database {
         log.error("Inserted to track @position = {}", position);
 	}
 
+    public void insertToTrack(Track track, Point point){
+        int position = loadPointsCursor(track).getCount();
+        insertToTrack(track, point, position);
+    }
+
     public void removeFromTrack(Track track, Point point){
         long trackId = findTrackId(track);
         long pointId = findPointId(point);

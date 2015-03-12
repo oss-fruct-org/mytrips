@@ -12,7 +12,15 @@
           app:showAsAction="always" />
     <item android:id="@+id/action_record"
         android:icon="@drawable/ic_record"
-        android:title="Record"
+        android:title="@string/record_track"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_publish"
+        android:icon="@drawable/ic_action_publish_icon_d"
+        android:title="@string/publish_track"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_unpublish"
+        android:icon="@drawable/ic_action_unpublish_icon_d"
+        android:title="@string/unpublish_track"
         app:showAsAction="always" />
     <item android:id="@+id/action_delete"
           android:icon="@drawable/ic_action_discard"

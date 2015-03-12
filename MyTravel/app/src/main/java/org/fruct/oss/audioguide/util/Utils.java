@@ -77,6 +77,10 @@ public class Utils {
 		void call(T t);
 	}
 
+    public static interface UserInfoCallback<T,Tt>{
+        void call(T t, Tt tt);
+    }
+
     public static int getDialogTheme() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             return android.R.style.Theme_Dialog;

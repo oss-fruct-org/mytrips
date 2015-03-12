@@ -30,8 +30,10 @@ import org.fruct.oss.audioguide.R;
 import org.fruct.oss.audioguide.adapters.TrackCursorAdapter;
 import org.fruct.oss.audioguide.config.Config;
 import org.fruct.oss.audioguide.dialogs.EditTrackDialog;
+import org.fruct.oss.audioguide.preferences.ConfigFragment;
 import org.fruct.oss.audioguide.track.CursorHolder;
 import org.fruct.oss.audioguide.track.DefaultTrackManager;
+import org.fruct.oss.audioguide.track.GetsBackend;
 import org.fruct.oss.audioguide.track.Point;
 import org.fruct.oss.audioguide.track.Track;
 import org.fruct.oss.audioguide.track.TrackManager;
@@ -335,6 +337,16 @@ public class TrackFragment extends ListFragment implements PopupMenu.OnMenuItemC
 				menu.findItem(R.id.action_start_guide).setVisible(false);
 			}
 
+           if(!selectedTrack.isPrivate() || !pref.getBoolean(ConfigFragment.PREF_IS_TRUSTED,false)){
+                menu.findItem(R.id.action_publish).setVisible(false);
+                menu.findItem(R.id.action_unpublish).setVisible(false);
+            }
+            else if(!selectedTrack.isPublished())
+                menu.findItem(R.id.action_unpublish).setVisible(false);
+            else
+                menu.findItem(R.id.action_publish).setVisible(false);
+
+
             //hide record button
             if(!selectedTrack.isLocal() || !selectedTrack.isPrivate()){
                 menu.findItem(R.id.action_record).setVisible(false);
@@ -371,6 +383,16 @@ public class TrackFragment extends ListFragment implements PopupMenu.OnMenuItemC
 				startDeletingTrack(selectedTrack);
 				actionMode.finish();
 				return true;
+
+            case R.id.action_publish:
+                trackManager.publishTrack(selectedTrack);
+                actionMode.finish();
+                return true;
+
+                case R.id.action_unpublish:
+                    trackManager.unpublishTrack(selectedTrack);
+                    actionMode.finish();
+                    return true;
 
             case R.id.action_record:
                 if( TrackRecorder.getInstance().getTrack() != null &&
