@@ -9,10 +9,32 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/list_item_activated"
     >
-
     <LinearLayout
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/buttonsLayout"
+        android:id="@+id/colorsLayout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        >
+
+        <TextView
+            android:id="@+id/colorText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:text="  "
+            android:textColor="#ff58585B"
+            android:background="#ff00ff00"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/colorsLayout"
+        android:id="@+id/textsLayout"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

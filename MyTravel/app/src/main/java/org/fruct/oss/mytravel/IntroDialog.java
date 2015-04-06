@@ -45,7 +45,7 @@ public class IntroDialog extends DialogFragment implements DialogInterface.OnCli
 
         // builder.setMessage(messageId);
         builder.setPositiveButton(android.R.string.ok, this);
-        builder.setNegativeButton(android.R.string.cancel, this);
+       // builder.setNegativeButton(android.R.string.cancel, this);
 
 
         View v = LayoutInflater.from(App.getContext()).inflate(R.layout.intro_dialog_layout, null);
@@ -68,5 +68,6 @@ public class IntroDialog extends DialogFragment implements DialogInterface.OnCli
     }
 
     protected void onAccept() {
+
     }
 }

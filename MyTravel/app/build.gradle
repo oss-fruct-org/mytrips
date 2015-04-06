@@ -8,7 +8,7 @@ android {
         applicationId 'org.fruct.oss.mytrips'
         minSdkVersion 10
         targetSdkVersion 20
-        versionCode 2
+        versionCode 3
         versionName '1.0'
     }
 

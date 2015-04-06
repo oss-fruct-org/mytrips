@@ -63,6 +63,7 @@ public class PointCursorAdapter extends CursorAdapter implements FileListener, V
 
 		holder.text1 = (TextView) view.findViewById(android.R.id.text1);
 		holder.text2 = (TextView) view.findViewById(android.R.id.text2);
+        holder.index = (TextView) view.findViewById(R.id.text_index);
 		holder.audioImage = (ImageView) view.findViewById(R.id.audioImage);
 		holder.icon = (ImageView) view.findViewById(android.R.id.icon);
 		holder.progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
@@ -96,8 +97,8 @@ public class PointCursorAdapter extends CursorAdapter implements FileListener, V
             holder.text2.setText(point.getDescription());
 		holder.audioImage.setVisibility(point.hasAudio() ? View.VISIBLE : View.GONE);
 		holder.icon.setImageDrawable(null);
-		holder.position = cursor.getPosition();
-
+		holder.position = cursor.getPosition() +1;
+        holder.index.setText(holder.position + "");
 		if (point.hasPhoto()) {
 			String photoUrl = point.getPhotoUrl();
 			//if (pendingIconUrls.contains(photoUrl)) {
@@ -217,6 +218,7 @@ public class PointCursorAdapter extends CursorAdapter implements FileListener, V
 		Point point;
 		TextView text1;
 		TextView text2;
+        TextView index;
 
 		ImageView audioImage;
 		ImageView icon;

@@ -95,6 +95,7 @@ public class HelpActivity extends ActionBarActivity {
 					new HelpEntry(getResources().getString(R.string.pointmenu), getResources().getString(R.string.pointmenu1), 0, true),
 					new HelpEntry(getResources().getString(R.string.att), getResources().getString(R.string.att1), R.drawable.ic_action_share, true),
 					new HelpEntry(getResources().getString(R.string.edit), getResources().getString(R.string.edit1), R.drawable.ic_action_edit, true),
+                    new HelpEntry(getResources().getString(R.string.drag), getResources().getString(R.string.drag1), R.drawable.ic_action_drag, true),
 			};
 
 			switch (position) {

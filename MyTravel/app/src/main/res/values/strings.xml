@@ -52,7 +52,7 @@
     <string name = "setloadrad">Load radius</string>
     <string name = "setpointrange">Point range</string>
 
-    <string name = "about_string">This application is a part of grant KA332 of Karelia ENPI CBC programme, which is co-funded by the European Union, the Russian Federation and the Republic of Finland. \n\nVersion: 0.1 </string>
+    <string name = "about_string">This application is a part of grant KA332 of Karelia ENPI CBC programme, which is co-funded by the European Union, the Russian Federation and the Republic of Finland. \n\nVersion: 1.0 </string>
 
     <!-- Help -->
 
@@ -98,34 +98,39 @@
     <string name = "publish">Published tracks can be made private again with "Unpublish" button.</string>
     <string name = "unpublish">Remove track from public access</string>
 
+    <string name = "drag">Move</string>
+    <string name = "drag1">Use Move button to start relocating point</string>
+    <string name = "publish_track">Publish</string>
+    <string name = "unpublish_track">Unpublish</string>
+
+
+    <string name = "record_track">Record visited points</string>
+    <string name = "delete_point">Delete point</string>
+
+
     <!-- Dialogs -->
     <string name = "selectcat">Select category</string>
     <string name = "namehint">Name</string>
     <string name = "deschint">Description</string>
     <string name = "urlhint">URL</string>
     <string name = "addnewtrack">Add new track</string>
-
+    <string name = "editing_position">Editing point position</string>
+    <string name = "insert_point_title">Adding point to track</string>
+    <string name = "welcommes">Welcome to My Trips</string>
+    <string name = "jumpto">Jumps to your location</string>
+    <string name = "dontshowagain"> Dont show this dialog again</string>
+    <string name = "pd_no_track">No track</string>
 
     <string name = "follow">Follow</string>
     <string name = "unfollow">Unfollow</string>
 
-    <string name = "welcommes">Welcome to My Trips</string>
-    <string name = "jumpto">Jumps to your location</string>
-    <string name = "dontshowagain"> Dont show this dialog again</string>
-
-    <string name = "pd_no_track">No track</string>
-
     <string name = "is_trusted_user">Trusted user</string>
 
-    <string name = "publish_track">Publish</string>
-    <string name = "unpublish_track">Unpublish</string>
-
+    <!-- Toasts -->
+    <string name = "point_not_editable">Point is not editable</string>
+    <string name = "position_not_set">Location is not set yet</string>
+    <string name = "no_tracks_to_show">No tracks to activate</string>
     <string name = "searching_points">Searching for near points</string>
 
-    <string name = "record_track">Record visited points</string>
-
-    <string name = "position_not_set">Location is not set yet</string>
-
-    <string name = "no_tracks_to_show">No tracks to activate</string>
 
 </resources>

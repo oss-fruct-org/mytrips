@@ -6,6 +6,7 @@ import org.fruct.oss.audioguide.gets.AddPointRequest;
 import org.fruct.oss.audioguide.gets.CategoriesRequest;
 import org.fruct.oss.audioguide.gets.Category;
 import org.fruct.oss.audioguide.gets.CreateTrackRequest;
+import org.fruct.oss.audioguide.gets.DeletePointRequest;
 import org.fruct.oss.audioguide.gets.DeleteTrackRequest;
 import org.fruct.oss.audioguide.gets.Gets;
 import org.fruct.oss.audioguide.gets.LoadPointsRequest;
@@ -298,6 +299,19 @@ public class GetsBackend implements StorageBackend, CategoriesBackend {
 			}
 		});
 	}
+
+    @Override
+    public void deletePoint(final Point point, final Utils.Callback<Point> callback) {
+        Gets gets = Gets.getInstance();
+        gets.addRequest(new DeletePointRequest(gets, point) {
+            @Override
+            protected void onPostProcess(GetsResponse response) {
+                if (response.getCode() == 0) {
+                    callback.call(point);
+                }
+            }
+        });
+    }
 
     @Override
     public void publishTrack(Track track){

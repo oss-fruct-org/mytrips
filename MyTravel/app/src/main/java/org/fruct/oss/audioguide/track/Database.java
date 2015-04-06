@@ -246,7 +246,7 @@ public class Database {
 
 	public Cursor loadRelationsCursor() {
 		Cursor cursor = db.rawQuery(
-				"SELECT tp.trackId, tp.pointId FROM tp INNER JOIN track " +
+				"SELECT tp.trackId, tp.pointId, track.name FROM tp INNER JOIN track " +
 						"ON track.id = tp.trackId " +
 						"WHERE track.local = 1 " +
 						"ORDER BY tp.trackId, tp.idx ", null);
@@ -456,6 +456,24 @@ public class Database {
 		db.delete("point", "point.id IN (SELECT tp.pointId FROM tp INNER JOIN track ON track.id=tp.trackId WHERE track.name=?);", new String[]{ track.getName() });
 		db.delete("track", "name=?", new String[]{ track.getName() });
 	}
+
+    public void deletePoint(Point point){
+        long pointId = findPointId(point);
+
+        if(pointId == -1){
+            log.error("Unable to deletePoint");
+            return;
+        }
+        db.beginTransaction();
+        try{
+            db.execSQL("delete from tp where pointId=?", Utils.toArray(pointId));
+            db.execSQL("delete from point where id=?", Utils.toArray(pointId));
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+
+    }
 
 
     public List<String> getTrackNames(){

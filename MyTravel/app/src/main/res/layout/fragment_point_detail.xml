@@ -55,6 +55,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/edit_point_imagebutton"
         android:background="#ffffffff"
         >
 
@@ -83,13 +85,34 @@
             android:src="@drawable/ic_action_edit_d"/>
 
         <ImageButton
-            android:id="@+id/add_to_track_imagebutton"
+            android:id="@+id/drag_point_imagebutton"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:background="#ffffffff"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/edit_point_imagebutton"
+            android:src="@drawable/ic_action_drag_l"/>
+
+
+        <ImageButton
+            android:id="@+id/add_to_track_imagebutton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="#ffffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/drag_point_imagebutton"
             android:src="@drawable/ic_action_share_d"/>
+
+        <ImageButton
+            android:id="@+id/delete_imagebutton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="#ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/add_to_track_imagebutton"
+            android:src="@drawable/ic_action_discard_d"/>
+
+
     </RelativeLayout>
 
 

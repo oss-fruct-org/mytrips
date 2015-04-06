@@ -53,9 +53,12 @@ public class EditOverlay extends Overlay implements Closeable {
 
     private static Drawable defaultMarker;
     private static Drawable startMarker;
+    private static Drawable dragArrows;
     private static int markerHeight, markerWidth;
+    private static int dragHeight, dragWidth;
 
     private static Map<Long, Integer> trackColors = new HashMap<Long, Integer>();
+    private static HashMap<String, Integer> trackNameColors = new HashMap<String, Integer>();
 	private Map<Long, EditOverlayItem> items = new HashMap<Long, EditOverlayItem>();
 	private int itemSize;
 
@@ -68,9 +71,12 @@ public class EditOverlay extends Overlay implements Closeable {
 	private Drawable markerDrawable;
 	private Drawable markerDrawable2;
 
+    private boolean drawDraggingItem = false;
+
 	private Paint linePaint;
 
 	private EditOverlayItem draggingItem;
+    private EditOverlayItem selectedItem;
 	private int dragRelX;
 	private int dragRelY;
 	private int dragStartX;
@@ -112,6 +118,8 @@ public class EditOverlay extends Overlay implements Closeable {
 		itemSize = Utils.getDP(24);
         markerHeight = Utils.getDP((int)(59 / 2.5f));
         markerWidth = Utils.getDP((int)(40 / 2.5f));
+        dragHeight = Utils.getDP((int)(36 / 2.5f));
+        dragWidth = Utils.getDP((int)(58 / 2.5f));
 		itemBackgroundDragPaint = new Paint();
 		itemBackgroundDragPaint.setColor(0xff1143fa);
 		itemBackgroundDragPaint.setStyle(Paint.Style.FILL);
@@ -132,7 +140,9 @@ public class EditOverlay extends Overlay implements Closeable {
 
         defaultMarker = App.getContext().getResources().getDrawable(R.drawable.point_marker);
         startMarker = App.getContext().getResources().getDrawable(R.drawable.start_point_marker);
+        dragArrows = App.getContext().getResources().getDrawable(R.drawable.drag_arrows);
         fileManager = DefaultFileManager.getInstance();
+
 	}
 
 	@Override
@@ -143,6 +153,11 @@ public class EditOverlay extends Overlay implements Closeable {
 
 		fileManager.recycleAllBitmaps("edit-overlay");
 	}
+
+    public void setDrawDraggingItem(boolean drawDragging){
+       this.drawDraggingItem = drawDragging;
+
+    }
 
 	private int getMeanColor(Drawable drawable) {
 		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
@@ -205,6 +220,27 @@ public class EditOverlay extends Overlay implements Closeable {
         return result;
     }
 
+    public HashMap<String, Integer> getTrackColors(){
+         trackNameColors = new HashMap<String, Integer>();
+
+        for(TrackRelation tr : tracks){
+            trackNameColors.put(tr.getTrackName(), tr.getColor());
+        }
+
+        return trackNameColors;
+    }
+
+    public static int getColorForTrack(String trackName){
+        Integer res = null;
+        if(trackNameColors!= null){
+            res = trackNameColors.get(trackName);
+        }
+        if(res == null){
+            return 255*255*255;
+        }else
+            return res;
+
+    }
 
 	public void setEditable(boolean isEditable) {
 		this.isEditable = isEditable;
@@ -220,7 +256,9 @@ public class EditOverlay extends Overlay implements Closeable {
 			return;
 
 		drawPath(canvas, view);
+        drawDragItemOverlay(canvas, view);
 		drawItems(canvas, view);
+
 	}
 
 	private void drawPath(Canvas canvas, MapView view) {
@@ -253,6 +291,19 @@ public class EditOverlay extends Overlay implements Closeable {
 
 		canvas.drawLine(point.x, point.y, point2.x, point2.y, linePaint);
 	}
+
+    private void drawDragItemOverlay(Canvas canvas, MapView view){
+        if(selectedItem == null || !drawDraggingItem)
+            return;
+        Projection proj = view.getProjection();
+        proj.toPixels(selectedItem.geoPoint, point);
+
+        dragArrows.setBounds(point.x - dragWidth, point.y - dragHeight + 5, point.x + dragWidth, point.y + dragHeight+ 5);
+        dragArrows.draw(canvas);
+        //canvas.drawLine(point.x-markerWidth/0.75f, point.y, point.x + markerWidth/0.75f , point.y, linePaint);
+       // canvas.drawLine(point.x-markerWidth/0.75f, point.y, point.x - markerWidth / 2f , point.y + markerHeight/4, linePaint);
+
+    }
 
 	private void drawItems(Canvas canvas, MapView view) {
         for(Map.Entry<Long, EditOverlayItem> entry : items.entrySet())
@@ -311,6 +362,8 @@ public class EditOverlay extends Overlay implements Closeable {
 
 			if (hitResult != null) {
 				draggingItem = hitResult.item;
+                if(!drawDraggingItem || hitResult.equals(selectedItem))
+                    selectedItem = hitResult.item;
 				dragRelX = hitResult.relHookX;
 				dragRelY = hitResult.relHookY;
 				dragStartX = (int) event.getX();
@@ -318,7 +371,7 @@ public class EditOverlay extends Overlay implements Closeable {
 				dragStarted = false;
 
 				//if (draggingItem.data.isEditable())
-					setupLongPressHandler(draggingItem);
+				//setupLongPressHandler(draggingItem);
 
 				mapView.invalidate();
 				return false;
@@ -341,6 +394,8 @@ public class EditOverlay extends Overlay implements Closeable {
 			return false;
 		} else if (event.getAction() == MotionEvent.ACTION_MOVE
 				&& draggingItem != null
+                && drawDraggingItem
+                && draggingItem.equals(selectedItem)
 				&& draggingItem.data.isEditable()) {
 			final int dx = dragStartX - (int) event.getX();
 			final int dy = dragStartY - (int) event.getY();
@@ -467,6 +522,7 @@ private void checkDistance(MapView mapView, android.graphics.Point p) {
             tracks.clear();
             long currentTrackId = -1;
             long prevPointId = -1;
+            String trackName = "";
             List<Long>points = new ArrayList<Long>();
             while (cursor.moveToNext()) {
                 long trackId = cursor.getLong(0);
@@ -474,6 +530,7 @@ private void checkDistance(MapView mapView, android.graphics.Point p) {
                 if (trackId != currentTrackId) { // new track
                     if(points.size() != 0 && currentTrackId != -1){
                         tr = new TrackRelation(currentTrackId);
+                        tr.setTrackName(trackName);
                         for(Long p : points)
                             tr.addPoint(p);
                         tracks.add(tr);
@@ -482,6 +539,7 @@ private void checkDistance(MapView mapView, android.graphics.Point p) {
 
                     currentTrackId = trackId;
                     prevPointId = cursor.getLong(1);
+                    trackName = cursor.getString(2);
                     points.add(prevPointId);
                     continue;
                 }
@@ -495,9 +553,12 @@ private void checkDistance(MapView mapView, android.graphics.Point p) {
                 TrackRelation tr = new TrackRelation(currentTrackId);
                 for(Long p : points)
                     tr.addPoint(p);
+                tr.setTrackName(trackName);
                 tracks.add(tr);
                 points.clear();
             }
+
+            getTrackColors();
             return oldCursor;
         }
     };
@@ -581,6 +642,7 @@ private void checkDistance(MapView mapView, android.graphics.Point p) {
     class TrackRelation{
 
         Long trackId = -1l;
+        String trackName = "";
         List<Long> points;
         int index = 0;
         int color;
@@ -619,6 +681,10 @@ private void checkDistance(MapView mapView, android.graphics.Point p) {
         public int  getColor(){
             return color;
         }
+
+        public String getTrackName(){ return trackName;}
+
+        public void setTrackName(String trackName) { this.trackName = trackName;}
     }
 
 }

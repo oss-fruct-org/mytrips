@@ -21,6 +21,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams;
@@ -90,11 +92,17 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 	private MyPositionOverlay myPositionOverlay;
 	private BroadcastReceiver locationReceiver;
 	private BroadcastReceiver pointInRangeReceiver;
+    private EditOverlay freePointsOverlay;
 
 	private ViewGroup bottomToolbar;
 	private MultiPanel multiPanel;
 
+    public static HashMap<String, Integer> trackColors;
+
 	private Point selectedPoint;
+    private IGeoPoint dragCoords;
+    private IGeoPoint dragStart;
+    private boolean dragging = false;
 
 	private List<EditOverlay> trackOverlays = new ArrayList<EditOverlay>();
     public static final GeoPoint PTZ = new GeoPoint(61.783333, 34.350000);
@@ -448,11 +456,14 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
             relations = trackManager.loadRelations();
 		}
 
-		EditOverlay freePointsOverlay = new EditOverlay(getActivity(),
+		freePointsOverlay = new EditOverlay(getActivity(),
 				activePoints, relations,
 				1, mapView);
-
+        freePointsOverlay.setDrawDraggingItem(dragging);
 		freePointsOverlay.setListener(trackOverlayListener);
+        //trackColors = freePointsOverlay.getTrackColors();
+//        log.error("Track colors size = {}", trackColors.size());
+
 		trackOverlays.add(freePointsOverlay);
 		mapView.getOverlays().add(freePointsOverlay);
 
@@ -542,6 +553,8 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 
     }
 
+
+
 	private class TrackingServiceConnection implements ServiceConnection {
 		@Override
 		public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -630,7 +643,7 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
         @Override
         public void editPoint() {
             if(!selectedPoint.isEditable()) {
-                Toast.makeText(getActivity(), "Point is not editable", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.point_not_editable), Toast.LENGTH_SHORT).show();
                 return;
             }
             EditPointDialog editPointDialog = EditPointDialog.newInstance(selectedPoint);
@@ -643,21 +656,44 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
             SelectTrackDialog dialog = SelectTrackDialog.newInstance();
             dialog.setListener(addPointToTrackListener);
             dialog.setNewTrackListener(showTrackDialogListener);
+            if(trackColors!= null)
+                dialog.setColors(trackColors);
             dialog.show(getFragmentManager(), "select-track-dialog");
         }
 
+        @Override
+        public void drag(){
+            if(!selectedPoint.isEditable()) {
+                Toast.makeText(getActivity(), getResources().getString(R.string.point_not_editable), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ActionBarActivity activity = (ActionBarActivity) getActivity();
+			activity.startSupportActionMode(pointActionMode);
+            dragStart = new GeoPoint(selectedPoint.getLatE6(), selectedPoint.getLonE6());
+            dragging = true;
+            freePointsOverlay.setDrawDraggingItem(dragging);
+            //updatePointsOverlay();
+
+        }
+
        };
+
+    private void stopDrag(){
+        dragging = false;
+        freePointsOverlay.setDrawDraggingItem(false);
+    }
 	private EditOverlay.Listener trackOverlayListener = new EditOverlay.Listener() {
 		@Override
 		public void pointMoved(Point point, IGeoPoint geoPoint) {
-			point.setCoordinates(geoPoint.getLatitudeE6(), geoPoint.getLongitudeE6());
-            log.error("Moved point and private= +{}",point.isPrivate());
-			trackManager.insertPoint(point);
+            dragCoords = geoPoint;
+			//point.setCoordinates(geoPoint.getLatitudeE6(), geoPoint.getLongitudeE6());
+			//trackManager.insertPoint(point);
 		}
 
 		@Override
 		public void pointPressed(Point point) {
-			log.debug("Simple point pressed");
+            if(dragging)
+                return;
             selectedPoint = point;
 			PointDetailFragment detailsFragment = PointDetailFragment.newInstance(point, true);
             detailsFragment.setListener(pointChangesListener);
@@ -678,11 +714,8 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 	private ActionMode.Callback pointActionMode = new ActionMode.Callback() {
 		@Override
 		public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-			actionMode.getMenuInflater().inflate(R.menu.point_menu, menu);
-            if(!selectedPoint.isPrivate()){
-                MenuItem item = menu.findItem(R.id.action_edit);
-                item.setVisible(false);
-            }
+			actionMode.getMenuInflater().inflate(R.menu.point_drag_menu, menu);
+            mapView.invalidate();
 			return true;
 		}
 
@@ -694,28 +727,29 @@ public class MapFragment extends Fragment implements SharedPreferences.OnSharedP
 		@Override
 		public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
 			switch (menuItem.getItemId()) {
-			case R.id.action_add_to_track:
-				SelectTrackDialog dialog = SelectTrackDialog.newInstance();
-				dialog.setListener(addPointToTrackListener);
-                dialog.setNewTrackListener(showTrackDialogListener);
-				dialog.show(getFragmentManager(), "select-track-dialog");
+			case R.id.action_apply_drag:
+                selectedPoint.setCoordinates(dragCoords.getLatitudeE6(), dragCoords.getLongitudeE6());
+                trackManager.insertPoint(selectedPoint);
 				actionMode.finish();
 				return true;
 
-			case R.id.action_edit:
-				EditPointDialog editPointDialog = EditPointDialog.newInstance(selectedPoint);
-				editPointDialog.setListener(editDialogListener);
-				editPointDialog.show(getFragmentManager(), "edit-point-dialog");
+			case R.id.action_cancel_drag:
+                selectedPoint.setCoordinates(dragStart.getLatitudeE6(), dragStart.getLongitudeE6());
+                trackManager.insertPoint(selectedPoint);
 				actionMode.finish();
 				return true;
 
 			default:
+                selectedPoint.setCoordinates(dragCoords.getLatitudeE6(), dragCoords.getLongitudeE6());
+                trackManager.insertPoint(selectedPoint);
 				return false;
 			}
 		}
 
 		@Override
 		public void onDestroyActionMode(ActionMode actionMode) {
+            stopDrag();
+            mapView.invalidate();
 		}
 	};
 }

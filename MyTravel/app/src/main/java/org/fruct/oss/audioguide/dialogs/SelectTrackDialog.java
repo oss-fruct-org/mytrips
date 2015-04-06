@@ -17,6 +17,8 @@ import org.fruct.oss.audioguide.track.DefaultTrackManager;
 import org.fruct.oss.audioguide.track.Track;
 import org.fruct.oss.audioguide.track.TrackManager;
 
+import java.util.HashMap;
+
 public class SelectTrackDialog extends DialogFragment implements DialogInterface.OnClickListener, CursorReceiver {
 	private Listener listener;
     private NewTrackListener newTrackListener;
@@ -31,10 +33,15 @@ public class SelectTrackDialog extends DialogFragment implements DialogInterface
 	private TrackManager trackManager;
 	private TrackCursorAdapter adapter;
 	private CursorHolder cursorHolder;
+    HashMap<String, Integer> trackColors;
 
 	public static SelectTrackDialog newInstance() {
 		return new SelectTrackDialog();
 	}
+
+    public void setColors(HashMap<String, Integer> colors){
+        trackColors = colors;
+    }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -43,7 +43,7 @@
     </plurals>
 
     <string name="title_activity_help">Помощь</string>
-    <string name = "about_string">Приложение является частью гранта KA322 программы “Karelia ENPI CBC”, которая фондируется Европейским союзом, Российской федерацией и Республикой Финляндией. \n\nВерсия: 0.1</string>
+    <string name = "about_string">Приложение является частью гранта KA322 программы “Karelia ENPI CBC”, которая фондируется Европейским союзом, Российской федерацией и Республикой Финляндией. \n\nВерсия: 1.0</string>
 
     <!-- Preferences strings -->
     <string name = "gets_not_logged">Не авторизован</string>
@@ -98,30 +98,37 @@
     <string name = "publish">Опубликованные треки можно сделать приватными кнопкой "Сделать приватным"</string>
     <string name = "unpublish">Убрать трек из публичного доступа</string>
 
+    <string name = "drag">Переместить</string>
+    <string name = "drag1">Используйте кнопку Переместить, чтобы изменить локацию точки</string>
+
+    <string name = "publish_track">Опубликовать</string>
+    <string name = "unpublish_track">Сделать приватным</string>
+    <string name = "record_track">Запоминать посещенные точки</string>
+
     <!-- Dialogs -->
     <string name = "selectcat">Выбрать категорию</string>
     <string name = "namehint">Название</string>
     <string name = "deschint">Описание</string>
     <string name = "urlhint">URL</string>
     <string name = "addnewtrack">Добавить новый трек</string>
-
-    <string name = "follow">Следовать</string>
-    <string name = "unfollow">Не следовать</string>
-
+    <string name = "insert_point_title">Добавление точки в трек</string>
     <string name = "welcommes">Добро пожаловать в Мои Путешествия</string>
     <string name = "jumpto">Перенести карту к вашему местоположению</string>
     <string name = "dontshowagain">Не показывать больше это окно</string>
 
+    <string name = "follow">Следовать</string>
+    <string name = "unfollow">Не следовать</string>
     <string name = "pd_no_track">Нет трека</string>
 
     <string name = "is_trusted_user">Доверенный пользователь</string>
 
-    <string name = "publish_track">Опубликовать</string>
-    <string name = "unpublish_track">Сделать приватным</string>
-    <string name = "searching_points">Поиск ближайших точек</string>
-    <string name = "record_track">Запоминать посещенные точки</string>
+    <string name = "delete_point">Удалить точку</string>
 
-    <string name = "position_not_set">Местоположение еще не установлена</string>
+    <string name = "editing_position">Изменение позиции точки в треке</string>
+
+    <!-- Toasts -->
+    <string name = "point_not_editable">Эту точку нельзя изменять</string>
+    <string name = "position_not_set">Местоположение еще не установлено</string>
     <string name = "no_tracks_to_show">Загруженных треков нет</string>
-
+    <string name = "searching_points">Поиск ближайших точек</string>
 </resources>

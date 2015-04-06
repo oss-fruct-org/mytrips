@@ -75,4 +75,6 @@ public interface TrackManager extends Closeable {
 
     public void getUserInfo(final Utils.UserInfoCallback<String, String> callback);
 
+    public void deletePoint(Point point, boolean deleteFromServer);
+
 }

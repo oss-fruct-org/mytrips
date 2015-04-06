@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.ListView;
 
+import org.fruct.oss.audioguide.R;
 import org.fruct.oss.audioguide.adapters.PointCursorAdapter;
 import org.fruct.oss.audioguide.track.CursorHolder;
 import org.fruct.oss.audioguide.track.DefaultTrackManager;
@@ -64,7 +65,6 @@ public class InsertPointDialog extends DialogFragment implements DialogInterface
         if(isEditPosition)
             adapter.addHighlightedItem(point);
 		cursorHolder.attachToAdapter(adapter);
-        log.error("Point @ insertion, private = {}", point.isPrivate());
 	}
 
 	@Override
@@ -79,12 +79,12 @@ public class InsertPointDialog extends DialogFragment implements DialogInterface
 
 		ListView listView = new ListView(getActivity());
 		listView.setAdapter(adapter);
-        builder.setTitle("Adding point to track");
+
 		builder.setView(listView);
 
-        log.error("isEdit={}" + isEditPosition);
 
         if(!isEditPosition) {
+            builder.setTitle(getResources().getString(R.string.insert_point_title));
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -92,6 +92,7 @@ public class InsertPointDialog extends DialogFragment implements DialogInterface
                 }
             });
         }else{
+            builder.setTitle(getResources().getString(R.string.editing_position));
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

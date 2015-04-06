@@ -26,4 +26,6 @@ public interface StorageBackend {
     void unpublishTrack(Track track);
 
     void getUserInfo(Utils.UserInfoCallback<String, String> callback);
+
+    void deletePoint(Point point, Utils.Callback<Point> callback);
 }

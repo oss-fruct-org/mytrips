@@ -320,7 +320,23 @@ public class DefaultTrackManager implements TrackManager, Closeable {
             });
     }
 
-	@Override
+    @Override
+    public void deletePoint(Point point, boolean deleteFromServer) {
+        if( deleteFromServer && point.isPrivate()){
+            backend.deletePoint(point, new Utils.Callback<Point>() {
+                @Override
+                public void call(Point point) {
+                    database.deletePoint(point);
+                    notifyDataChanged();
+                }
+            });
+        }else{
+            database.deletePoint(point);
+            notifyDataChanged();
+        }
+    }
+
+    @Override
 	public Track getTrackByName(String name) {
 		if (name == null)
 			return null;
@@ -390,6 +406,7 @@ public class DefaultTrackManager implements TrackManager, Closeable {
 			database.deleteTrack(track);
 		}
 	}
+
 
 	private void loadRemoteCategories() {
 		categoriesBackend.loadCategories(new Utils.Callback<List<Category>>() {

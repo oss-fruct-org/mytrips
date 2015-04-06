@@ -1,6 +1,8 @@
 package org.fruct.oss.audioguide.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
@@ -23,10 +25,13 @@ import android.widget.TextView;
 import org.fruct.oss.audioguide.MultiPanel;
 import org.fruct.oss.audioguide.NavigationDrawerFragment;
 import org.fruct.oss.audioguide.R;
+import org.fruct.oss.audioguide.config.Config;
 import org.fruct.oss.audioguide.files.DefaultFileManager;
 import org.fruct.oss.audioguide.files.FileListener;
 import org.fruct.oss.audioguide.files.FileManager;
+import org.fruct.oss.audioguide.track.DefaultTrackManager;
 import org.fruct.oss.audioguide.track.Point;
+import org.fruct.oss.audioguide.track.TrackManager;
 import org.fruct.oss.audioguide.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +52,7 @@ public class PointDetailFragment extends Fragment implements FileListener {
 	private ImageView imageView;
 	//private Bitmap imageBitmap;
 
+    private TrackManager trackManager;
 	private int imageSize;
 	private boolean isStateSaved;
 	private boolean isImageExpanded;
@@ -56,6 +62,7 @@ public class PointDetailFragment extends Fragment implements FileListener {
     public interface Listener{
         void editPoint();
         void addToTrack();
+        void drag();
     }
 
     public void setListener(Listener l){this.listener = l;}
@@ -132,6 +139,8 @@ public class PointDetailFragment extends Fragment implements FileListener {
 			isOverlay = savedInstanceState.getBoolean(STATE_IS_OVERLAY);
 		}
 
+        trackManager = DefaultTrackManager.getInstance();
+
 		fileManager = DefaultFileManager.getInstance();
 		fileManager.addWeakListener(this);
 
@@ -188,19 +197,73 @@ public class PointDetailFragment extends Fragment implements FileListener {
             });
 
             ImageButton editButton = (ImageButton) view.findViewById(R.id.edit_point_imagebutton);
-            editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View arg0) {
-                    listener.editPoint();
-                }
-            });
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                listener.editPoint();
+            }
+        });
+
+        ImageButton deleteButton = (ImageButton) view.findViewById(R.id.delete_imagebutton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                startDeletingPoint(point);
+            }
+        });
+
+        ImageButton dragPoint = (ImageButton) view.findViewById(R.id.drag_point_imagebutton);
+        dragPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                listener.drag();
+                closeDialog();
+            }
+        });
+
+
         if(listener == null) {
             addButton.setVisibility(View.GONE);
             editButton.setVisibility(View.GONE);
+            deleteButton.setVisibility(View.GONE);
+            dragPoint.setVisibility(View.GONE);
+
         }
 		return view;
 	}
 
+    private void closeDialog(){
+        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+    }
+
+    private void startDeletingPoint(final Point point) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.delete_point);
+        if (!Config.isEditLocked() && point.isPrivate()) {
+            builder.setPositiveButton(R.string.delete_track_server, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    trackManager.deletePoint(point, true);
+                    closeDialog();
+                }
+            });
+        }
+
+        builder.setNeutralButton(R.string.delete_track_local, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                trackManager.deletePoint(point, false);
+                closeDialog();
+            }
+        });
+
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.create().show();
+    }
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

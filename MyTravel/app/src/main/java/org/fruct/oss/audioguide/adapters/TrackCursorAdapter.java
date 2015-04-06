@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.fruct.oss.audioguide.R;
+import org.fruct.oss.audioguide.fragments.MapFragment;
+import org.fruct.oss.audioguide.overlays.EditOverlay;
 import org.fruct.oss.audioguide.track.DefaultTrackManager;
 import org.fruct.oss.audioguide.track.Track;
 import org.fruct.oss.audioguide.track.TrackManager;
@@ -38,6 +40,7 @@ public class TrackCursorAdapter extends CursorAdapter implements View.OnClickLis
 		TrackHolder holder = new TrackHolder();
 		holder.text1 = (TextView) view.findViewById(android.R.id.text1);
 		holder.text2 = (TextView) view.findViewById(android.R.id.text2);
+        holder.colorText = (TextView) view.findViewById(R.id.colorText);
 
 		holder.publicImage = (ImageButton) view.findViewById(R.id.publicImage);
 		holder.publicImage.setTag(holder);
@@ -70,6 +73,8 @@ public class TrackCursorAdapter extends CursorAdapter implements View.OnClickLis
 
 		holder.text1.setText(track.getHumanReadableName());
 		holder.text2.setText(track.getDescription());
+
+        holder.colorText.setBackgroundColor(EditOverlay.getColorForTrack(track.getName()));
 
 		setupButton(holder.publicImage, !holder.track.isPrivate());
 		setupButton(holder.localImage, holder.track.isLocal());
@@ -114,6 +119,7 @@ public class TrackCursorAdapter extends CursorAdapter implements View.OnClickLis
 
 		TextView text1;
 		TextView text2;
+        TextView colorText;
 		ImageButton publicImage;
 		ImageButton localImage;
         ImageButton recordImage;
